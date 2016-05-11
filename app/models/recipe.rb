@@ -16,19 +16,18 @@ class Recipe < ActiveRecord::Base
         @ingredient = Ingredient.find(ingredient[:id])
       else
         @ingredient = self.ingredients.build
-      end
+      end 
 
       # Set ingredient amount and recipe_id
       @ingredient.amount = ingredient[:amount]
       @ingredient.recipe_id = self.id
-
+      
       # Avoid duplicating existing item with find_or_initialize
-      @item = Item.find_or_initialize_by(name: ingredient[:item_attributes][:name].downcase.capitalize)
+      @item =  Item.find_or_initialize_by(name: ingredient[:item_attributes][:name].downcase.capitalize)
       @item.save
 
       @ingredient.item_id = @item.id 
       @ingredient.save
     end
   end
-
 end

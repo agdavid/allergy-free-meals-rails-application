@@ -1,7 +1,6 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:show, :edit, :update]
-
   def show
+    @recipe = Recipe.find(params[:id])
   end
 
   def new
@@ -11,32 +10,29 @@ class RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(recipe_params)
     if @recipe.save
-      redirect_to recipe_path(@recipe), notice: "Recipe was successfully created."
+      redirect_to recipe_path(@recipe)
     else
       render "new"
     end
   end
 
   def edit
+    @recipe = Recipe.find(params[:id])
   end
 
-  def update   
+  def update
+    @recipe = Recipe.find(params[:id])    
     if @recipe.update(recipe_params)
-      redirect_to recipe_path(@recipe), notice: "Recipe was successfully updated."
+      redirect_to recipe_path(@recipe)
     else
       render "edit"
     end
   end
 
   private
-    def set_recipe
-      @recipe = Recipe.find(params[:id])
-    end
-    
     def recipe_params
-      params.require(:recipe).permit(:title, :description, :instructions,
+      params.require(:recipe).permit(:title, :description, :instruction,
         :ingredients_attributes => [:id, :amount, :_destroy, :item_attributes => [:id, :_destroy, :name]],
         :allergen_ids => [])
     end
-
 end
