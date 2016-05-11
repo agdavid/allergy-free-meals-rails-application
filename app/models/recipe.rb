@@ -7,8 +7,12 @@ class Recipe < ActiveRecord::Base
 
   belongs_to :author, :class_name => "User" 
 
+  # paperclip gem
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>"}
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+
+  # acts as votable gem
+  acts_as_votable
 
   accepts_nested_attributes_for :ingredients, allow_destroy: true
   accepts_nested_attributes_for :items

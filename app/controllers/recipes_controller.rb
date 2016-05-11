@@ -40,6 +40,19 @@ class RecipesController < ApplicationController
     redirect_to root_path, :notice => "Recipe successfully deleted."
   end
 
+  # acts_as_votable
+  def upvote
+    @recipe = Recipe.find(params[:id])
+    @recipe.upvote_by current_user
+    redirect_to :back
+  end
+
+  def downvote
+    @recipe = Recipe.find(params[:id])
+    @recipe.downvote_by current_user
+    redirect_to :back 
+  end
+
   private
     def recipe_params
       params.require(:recipe).permit(:title, :description, :instruction, :author_id, :image,

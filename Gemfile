@@ -47,6 +47,9 @@ gem 'paperclip', '~> 4.3', '>= 4.3.6'
 # Use acts as votable for liking recipes
 gem 'acts_as_votable', '~> 0.10.0'
 
+# Use for icons
+gem 'font-awesome-less'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
