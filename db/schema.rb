@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160511145444) do
+ActiveRecord::Schema.define(version: 20160511153634) do
 
   create_table "allergens", force: :cascade do |t|
     t.string   "name"
@@ -69,8 +69,12 @@ ActiveRecord::Schema.define(version: 20160511145444) do
     t.datetime "updated_at",                       null: false
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["provider"], name: "index_users_on_provider"
+  add_index "users", ["uid"], name: "index_users_on_uid"
 
 end
