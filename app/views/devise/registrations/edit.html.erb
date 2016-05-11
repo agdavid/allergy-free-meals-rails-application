@@ -13,7 +13,13 @@
   <div class="field">
     <%= f.label :last_name %><br />
     <%= f.text_field :last_name %>
-  </div>  
+  </div> 
+
+  <!-- custom attribute -->
+  <div class="field">
+    <%= f.label :allergen_ids, "Allergens to avoid:" %><br />
+    <%= f.collection_check_boxes :allergen_ids, Allergen.all, :id, :name %>
+  </div> 
 
   <div class="field">
     <%= f.label :email %><br />

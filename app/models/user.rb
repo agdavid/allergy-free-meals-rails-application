@@ -4,4 +4,7 @@ class User < ActiveRecord::Base
   # :recoverable 
   devise :database_authenticatable, :registerable,
          :rememberable, :trackable, :validatable
+
+  has_many :user_allergens
+  has_many :allergens, through: :user_allergens
 end
