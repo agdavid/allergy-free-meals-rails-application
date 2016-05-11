@@ -1,7 +1,7 @@
 <h1>Recipe Show Page</h1>
 
 <h4>Name: <%= @recipe.title %></h4>
-<h4>By: <%= @recipe.author.first_name %></h4>
+<h4>By: <%= @recipe.author.name %></h4>
 <h4>Description: <%= @recipe.description %></h4>
 <h4>Instructions: <%= @recipe.instruction %></h4>
 Ingredients:
@@ -20,3 +20,5 @@ Ingredients:
     </li>
   <% end %>
 </ul>
+
+<%= link_to "Delete Recipe", recipe_path(@recipe), method:"delete" %>
