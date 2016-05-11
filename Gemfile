@@ -41,6 +41,9 @@ gem 'devise'
 # Use omniauth-[provider] for outside authentication
 gem 'omniauth-facebook'
 
+# Use paperclip for recipe images
+gem 'paperclip', '~> 4.3', '>= 4.3.6'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
