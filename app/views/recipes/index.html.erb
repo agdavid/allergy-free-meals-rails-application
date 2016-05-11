@@ -5,12 +5,13 @@
         <%= link_to (image_tag recipe.image.url(:thumb)), recipe_path(recipe)%><br />
         Submitted <%= time_ago_in_words(recipe.created_at) %> ago by <%= recipe.author.name %><br />
         <%= link_to like_recipe_path(recipe), method:"put" do %>
-          <span class="glyphicon glyphicon-heart"></span>
-          <%= recipe.get_upvotes.size %>
-        <% end %> | 
-        <%= link_to dislike_recipe_path(recipe), method:"put" do %>
-          <%= recipe.get_downvotes.size %>
+          <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
         <% end %>
+        <%= recipe.get_upvotes.size %>| 
+        <%= link_to dislike_recipe_path(recipe), method:"put" do %>
+          <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
+        <% end %>
+        <%= recipe.get_downvotes.size %>
     </li>
   <% end %>
 </ul>
