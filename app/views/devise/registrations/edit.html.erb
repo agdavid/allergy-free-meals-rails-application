@@ -5,15 +5,9 @@
 
   <!-- custom attribute -->
   <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name %>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
   </div>
-
-  <!-- custom attribute -->
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
-  </div> 
 
   <!-- custom attribute -->
   <div class="field">
@@ -40,10 +34,13 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
+  <!-- Conditional to require password for edit/update only if required (i.e., non omniauth login) -->
+  <% if f.object.encrypted_password.present? %>
+    <div class="field">
+      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+      <%= f.password_field :current_password, autocomplete: "off" %>
+    </div>
+  <% end %> 
 
   <div class="actions">
     <%= f.submit "Update" %>
