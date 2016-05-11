@@ -7,4 +7,6 @@ class User < ActiveRecord::Base
 
   has_many :user_allergens
   has_many :allergens, through: :user_allergens
+
+  has_many :recipes, :foreign_key => "author_id"
 end

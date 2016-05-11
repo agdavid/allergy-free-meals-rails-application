@@ -5,6 +5,8 @@ class Recipe < ActiveRecord::Base
   has_many :recipe_allergens
   has_many :allergens, through: :recipe_allergens
 
+  belongs_to :author, :class_name => "User" 
+
   accepts_nested_attributes_for :ingredients, allow_destroy: true
   accepts_nested_attributes_for :items
 
