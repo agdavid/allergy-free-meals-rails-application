@@ -1,0 +1,14 @@
+<li class="nested-fields">
+  <div>
+    <%= f.label :amount, "Amount:" %>
+    <%= f.text_field :amount %>
+
+    <%= f.label "Ingredient:" %>
+    <%= f.fields_for :item do |ingredient_item| %>
+      <%= ingredient_item.text_field :name %>
+    <% end %>
+
+    <!-- 'cocoon' method looks for closest HTML element with class "nested-fields" -->
+    <%= link_to_remove_association "Remove", f %>
+  </div>
+</li>

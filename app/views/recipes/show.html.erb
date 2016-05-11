@@ -1,0 +1,21 @@
+<h1>Recipe Show Page</h1>
+
+<h4>Name: <%= @recipe.title %></h4>
+<h4>Description: <%= @recipe.description %></h4>
+<h4>Instructions: <%= @recipe.instructions %></h4>
+Ingredients:
+<ol>
+  <% @recipe.ingredients.each do |ingredient| %>
+    <li>
+      <%= ingredient.item.name %> - <%= ingredient.amount %>
+    </li>
+    <% end %>
+</ol>
+<h4>Allergens Free of:</h4>
+<ul>
+  <% @recipe.allergens.each do |allergen| %>
+    <li>
+      <%= allergen.name %>
+    </li>
+  <% end %>
+</ul>

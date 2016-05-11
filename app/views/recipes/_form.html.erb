@@ -1,0 +1,37 @@
+<%= form_for(@recipe) do |f| %>
+  <fieldset>
+    <ol>
+      <li>
+        <%= f.label :title, "Recipe Name" %>
+        <%= f.text_field :title %>
+      </li>
+      <li>
+        <%= f.label :description, "A brief description of this recipe" %><br />
+        <%= f.text_area :description, rows: 5, cols: 30 %>
+      </li>
+      <li>
+        <%= f.label :instructions, "Instructions for this recipe" %><br />
+        <%= f.text_area :instructions, rows: 10, cols: 30 %>
+      </li>
+    </ol>
+  </fieldset>
+  
+  <fieldset id="recipe-items">
+    <h4><%= f.label "Ingredients" %></h4>
+    <!-- nested form "ingredients" which joins to "item"; loop creates entry fields for each "item" and its "ingredient" attr amount through a partial named _[model]_fields.html.erb -->
+    <ol>
+      <%= f.fields_for :ingredients do |ingredient| %>
+        <%= render 'ingredient_fields', f: ingredient %>
+      <% end %>
+    </ol>
+    <!-- 'cocoon' helper method to generate additional ingredient/item fields in form -->
+    <!-- wrap_object allows new, empty "item" object associated with the "ingredient" entry on the form; without this you would add only a new "ingredient" without an associated "item"-->
+    <%= link_to_add_association 'Add Ingredient', f, :ingredients, 'data-association-insertion-node' => "#recipe-items ol", 'data-association-insertion-method' => "append", :wrap_object => Proc.new { |ingredient| ingredient.build_item; ingredient }%>    
+  </fieldset>
+  <fieldset>
+    <h4><%= f.label "Free of Allergens:" %></h4>
+    <%= f.collection_check_boxes :allergen_ids, Allergen.all, :id, :name %>
+  </fieldset>
+
+  <%= f.submit %>
+<% end %>
