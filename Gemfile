@@ -48,7 +48,7 @@ gem 'paperclip', '~> 4.3', '>= 4.3.6'
 gem 'acts_as_votable', '~> 0.10.0'
 
 # Use for icons
-gem 'font-awesome-less'
+gem 'font-awesome-sass'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
