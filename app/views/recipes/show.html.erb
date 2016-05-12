@@ -1,5 +1,7 @@
 <h1>Recipe Show Page</h1>
 
+<%= link_to "Add to Favorites", favorite_recipe_path(@recipe), method:"put" %> | <%= link_to "Remove from Favorites", unfavorite_recipe_path(@recipe), method:"put" %><br />
+
 <%= image_tag @recipe.image.url(:medium) %>
 <h4>Name: <%= @recipe.title %></h4>
 <h4>By: <%= @recipe.user.name %></h4>
@@ -22,5 +24,7 @@ Ingredients:
   <% end %>
 </ul>
 
-<%= link_to "Edit Recipe", edit_user_recipe_path(@recipe.user, @recipe) %><br />
-<%= link_to "Delete Recipe", recipe_path(@recipe), method:"delete" %>
+<% if @recipe.user == current_user %>
+  <%= link_to "Edit Recipe", edit_user_recipe_path(@recipe.user, @recipe) %> |
+  <%= link_to "Delete Recipe", recipe_path(@recipe), method:"delete" %>
+<% end %>

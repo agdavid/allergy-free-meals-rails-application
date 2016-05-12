@@ -8,4 +8,16 @@ Recipes:
     </li>
   <% end %>  
 </ol>
-<%= link_to "New Recipe", new_user_recipe_path(@user) %>
+Favorites:
+<ol>
+  <% @favorites.each do |favorite| %>
+    <li>
+      <%= link_to favorite.title, recipe_path(favorite) %>
+    </li>
+  <% end %>  
+</ol>
+
+
+<% if @user == current_user %>
+  <%= link_to "New Recipe", new_user_recipe_path(@user) %>
+<% end %>

@@ -15,12 +15,16 @@ Rails.application.routes.draw do
     resources :recipes, only: [:show, :index, :new, :edit]
   end
 
-  # Recipe with nested member routes and http verbs
+  # Recipe with nested member routes
   resources :recipes do 
     member do 
       # Acts as votable
       put "like", to: "recipes#upvote"
       put "dislike", to: "recipes#downvote"
+
+      # Favorite recipes
+      put "favorite", to: "recipes#favorite"
+      put "unfavorite", to: "recipes#unfavorite"
     end
   end
   

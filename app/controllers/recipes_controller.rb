@@ -72,13 +72,15 @@ class RecipesController < ApplicationController
     end
   end
 
+  # Make sure to add authorization
   def destroy
     @recipe = Recipe.find(params[:id])
     @recipe.destroy
     redirect_to root_path, :notice => "Recipe successfully deleted."
   end
 
-  # acts_as_votable
+  # Acts as votable
+  # Make sure to add authorization - only vote if not own recipe
   def upvote
     @recipe = Recipe.find(params[:id])
     @recipe.upvote_by current_user
@@ -89,6 +91,29 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @recipe.downvote_by current_user
     redirect_to :back 
+  end
+
+  # Favorite recipes
+  def favorite
+    @recipe = Recipe.find(params[:id])
+    @favorites = current_user.favorites
+    if @favorites.include?(@recipe)
+      redirect_to :back, alert: "Failed to add. Recipe already in favorites."
+    else
+      @favorites << @recipe
+      redirect_to :back, notice: "Recipe added to favorites."  
+    end
+  end
+
+  def unfavorite
+    @recipe = Recipe.find(params[:id])
+    @favorites = current_user.favorites
+    if @favorites.include?(@recipe)
+      @favorites.delete(@recipe)
+      redirect_to :back, notice: "Recipe removed from favorites."
+    else
+      redirect_to :back, alert: "Failed to remove. Recipe was not in favorites."
+    end
   end
 
   private
