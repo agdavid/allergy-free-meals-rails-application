@@ -5,11 +5,16 @@ class User < ActiveRecord::Base
          :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
 
+  # Relationships
   has_many :recipes
+  has_many :favorite_recipes
+  has_many :favorites, through: :favorite_recipes, source: :recipe
 
   has_many :user_allergens
   has_many :allergens, through: :user_allergens
 
+  
+  # Oauth
   def self.find_or_create_from_omniauth(auth_hash)
     where(email: auth_hash[:info][:email]).first_or_create do |user|
       #set the remaining attributes
@@ -19,32 +24,37 @@ class User < ActiveRecord::Base
     end
   end
 
-  # If omniauth user not saved, sent back here from controller
-  # Set the user attributes back on the model and validate
+  
+  # Devise overrides
+  # If oauth user not saved, sent here from controller
+  # Set user attributes back on the model and validate
   def self.new_with_session(params, session)
-    # If connect to omniauth provider
+    # If connect to oauth provider
     if session["devise.user_attributes"]
-      # Create new user from attributes, no protection because trust omniauth
+      # Create new user from attributes, no protection because trust oauth
       new(session["devise.user_attributes"], without_protection: true) do |user|
         user.attributes = params
         user.valid?
       end
-    else # Fallback to normal Devise behavior
+    else # Fallback to default Devise behavior
       super
     end
   end
 
-  # Override method to avoid password during login, if from omniauth
+  # Override to avoid password during login, if from oauth
   def password_required?
-    # Require password only if omniauth provider is blank
+    # Fallback to default Devise behavior
+    # Require password only if oauth provider blank
     super && provider.blank?
   end
 
-  # Override method to avoid password during edit/update, if from omniauth
+  # Override to avoid password during edit/update, if from oauth
   def update_with_password(params, *options)
     if encrypted_password.blank?
       update_attributes(params, *options)
     else
+      # Fallback to default Devise behavior
+      # Require password confirmation if user has encrypted password
       super
     end
   end

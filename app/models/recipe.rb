@@ -1,11 +1,15 @@
 class Recipe < ActiveRecord::Base
+  
+  # Relationships
   has_many :ingredients
   has_many :items, through: :ingredients
 
   has_many :recipe_allergens
   has_many :allergens, through: :recipe_allergens
 
-  belongs_to :user 
+  belongs_to :user
+  has_many :favorite_recipes
+  has_many :favorited_by, through: :favorite_recipes, source: :user 
 
   # Paperclip gem
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>"}
