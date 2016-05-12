@@ -17,6 +17,7 @@ class RecipesController < ApplicationController
   def show
     if params[:user_id]
       @user = User.find_by(id: params[:user_id])
+      # Filter for a recipe by the user
       @recipe = @user.recipes.find_by(id: params[:id])
       if @recipe.nil?
         flash[:alert] = "Recipe not found."
@@ -27,6 +28,7 @@ class RecipesController < ApplicationController
     end
   end
 
+  # Make sure to add authorization
   def new
     @recipe = current_user.recipes.build
   end
@@ -40,8 +42,25 @@ class RecipesController < ApplicationController
     end
   end
 
+  # Make sure to add authorization
   def edit
-    @recipe = Recipe.find(params[:id])
+    if params[:user_id]
+      @user = User.find_by(id: params[:user_id])
+      # First, filter for an actual user
+      if @user.nil?
+        redirect_to users_path, alert: "User not found."
+      else
+      # Second, filter for an actual recipe of the user
+        @recipe = @user.recipes.find_by(id: params[:id])
+        if @recipe.nil?
+          redirect_to user_recipes_path(@user), alert: "Recipe not found."
+        else
+          @recipe = Recipe.find(params[:id])    
+        end
+      end
+    else
+      @recipe = Recipe.find(params[:id])
+    end
   end
 
   def update
@@ -74,7 +93,7 @@ class RecipesController < ApplicationController
 
   private
     def recipe_params
-      params.require(:recipe).permit(:title, :description, :instruction, :author_id, :image,
+      params.require(:recipe).permit(:title, :description, :instruction, :user_id, :image,
         :ingredients_attributes => [:id, :amount, :_destroy, :item_attributes => [:id, :_destroy, :name]],
         :allergen_ids => [])
     end

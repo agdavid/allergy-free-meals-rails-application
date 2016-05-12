@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   # User with nested resource for recipes
   resources :users do 
-    resources :recipes, only: [:show, :index]
+    resources :recipes, only: [:show, :index, :new, :edit]
   end
 
   # Recipe with nested resource for acts-as-votable
