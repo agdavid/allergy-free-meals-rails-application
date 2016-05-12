@@ -1,15 +1,14 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  # :recoverable 
+  # Devise modules - others available:
+  # :confirmable, :lockable, :timeoutable, :recoverable 
   devise :database_authenticatable, :registerable,
          :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
 
+  has_many :recipes
+
   has_many :user_allergens
   has_many :allergens, through: :user_allergens
-
-  has_many :recipes
 
   def self.find_or_create_from_omniauth(auth_hash)
     where(email: auth_hash[:info][:email]).first_or_create do |user|
