@@ -1,11 +1,30 @@
 class RecipesController < ApplicationController
 
   def index
-    @recipes = Recipe.all
+    if  params[:user_id]
+      @user = User.find_by(id: params[:user_id])
+      if @user.nil?
+        flash[:alert] = "User not found."
+        redirect_to users_path
+      else
+        @recipes = @user.recipes 
+      end
+    else
+      @recipes = Recipe.all
+    end
   end
 
   def show
-    @recipe = Recipe.find(params[:id])
+    if params[:user_id]
+      @user = User.find_by(id: params[:user_id])
+      @recipe = @user.recipes.find_by(id: params[:id])
+      if @recipe.nil?
+        flash[:alert] = "Recipe not found."
+        redirect_to user_recipes_path(@user)
+      end
+    else 
+      @recipe = Recipe.find(params[:id])
+    end
   end
 
   def new

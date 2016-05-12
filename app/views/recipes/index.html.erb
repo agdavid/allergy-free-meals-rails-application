@@ -1,9 +1,9 @@
 <h1>Recipe Index Page</h1>
 <ul>
   <% @recipes.each do |recipe| %>
-    <li><%= link_to recipe.title, recipe_path(recipe) %><br />
-        <%= link_to (image_tag recipe.image.url(:thumb)), recipe_path(recipe)%><br />
-        Submitted <%= time_ago_in_words(recipe.created_at) %> ago by <%= recipe.author.name %><br />
+    <li><%= link_to recipe.title, user_recipe_path(recipe.user, recipe) %><br />
+        <%= link_to (image_tag recipe.image.url(:thumb)), user_recipe_path(recipe.user, recipe)%><br />
+        Submitted <%= time_ago_in_words(recipe.created_at) %> ago by <%= recipe.user.name %><br />
         <%= link_to like_recipe_path(recipe), method:"put" do %>
           <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
         <% end %>

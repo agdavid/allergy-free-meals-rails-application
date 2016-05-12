@@ -1,0 +1,9 @@
+<h1>All Users Index</h1>
+<ol>
+  <% @users.each do |user| %>
+    <li>
+      Profile Page: <%= link_to user.name, user_path(user) %> |
+      Recipes: <%= link_to user.name, user_recipes_path(user) %>
+    </li>
+  <% end %>  
+</ol>

@@ -1,10 +1,20 @@
 Rails.application.routes.draw do
+  get 'users/show'
+
+  get 'users/index'
+
   root 'recipes#index'
 
   devise_for :users, 
               path_names: { sign_in: 'login', sign_out: 'logout'},
               controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
+  # User with nested resource for recipes
+  resources :users do 
+    resources :recipes, only: [:show, :index]
+  end
+
+  # Recipe with nested resource for acts-as-votable
   resources :recipes do 
     member do 
       put "like", to: "recipes#upvote"

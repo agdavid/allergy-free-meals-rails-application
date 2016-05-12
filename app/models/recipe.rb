@@ -5,7 +5,7 @@ class Recipe < ActiveRecord::Base
   has_many :recipe_allergens
   has_many :allergens, through: :recipe_allergens
 
-  belongs_to :author, :class_name => "User" 
+  belongs_to :user 
 
   # paperclip gem
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>"}

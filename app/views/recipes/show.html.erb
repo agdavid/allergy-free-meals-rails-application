@@ -2,7 +2,7 @@
 
 <%= image_tag @recipe.image.url(:medium) %>
 <h4>Name: <%= @recipe.title %></h4>
-<h4>By: <%= @recipe.author.name %></h4>
+<h4>By: <%= @recipe.user.name %></h4>
 <h4>Description: <%= @recipe.description %></h4>
 <h4>Instructions: <%= @recipe.instruction %></h4>
 Ingredients:

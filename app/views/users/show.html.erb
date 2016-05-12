@@ -1,0 +1,10 @@
+<h1>User Show Page</h1>
+Name: <%= @user.name %><br />
+Recipes:
+<ol>
+  <% @recipes.each do |recipe| %>
+    <li>
+      <%= link_to recipe.title, user_recipe_path(recipe.user, recipe) %>
+    </li>
+  <% end %>  
+</ol>

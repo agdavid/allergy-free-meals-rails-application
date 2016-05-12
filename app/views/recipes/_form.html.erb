@@ -18,7 +18,9 @@
         <%= f.text_field :title %>
       </li>
       <li>
-        <% if !@recipe.image.nil? %>
+        <% if @recipe.image.nil? %>
+          Upload an image
+        <% else %>
           Current image:<br />
           <%= image_tag @recipe.image.url(:thumb) %>
         <% end %><br />

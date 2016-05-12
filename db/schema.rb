@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20160511193755) do
     t.text     "instruction"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
-    t.integer  "author_id"
+    t.integer  "user_id"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"

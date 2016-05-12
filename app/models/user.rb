@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :user_allergens
   has_many :allergens, through: :user_allergens
 
-  has_many :recipes, :foreign_key => "author_id"
+  has_many :recipes
 
   def self.find_or_create_from_omniauth(auth_hash)
     where(email: auth_hash[:info][:email]).first_or_create do |user|
