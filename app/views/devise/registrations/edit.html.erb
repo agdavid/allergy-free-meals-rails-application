@@ -17,6 +17,20 @@
           </div>
 
           <!-- custom attribute -->
+          <div class="form-group">
+            <%= f.label :image, "Profile Picture"  %>
+            <div class="col-sm-6">
+              <%= f.file_field :image %>
+            </div>
+          </div>
+
+          <!-- custom attribute -->  
+          <div class="form-group">
+            <%= f.label :motto, "Your motto or phrase:" %>
+            <%= f.text_field :motto, class: "form-control" %>
+          </div> 
+
+          <!-- custom attribute -->
           <div class="checkbox-list">
             <%= f.label :allergen_ids, "Allergens to avoid:" %><br />
             <%= f.collection_check_boxes :allergen_ids, Allergen.all, :id, :name %>
