@@ -1,33 +1,45 @@
 <div id="user_show" class="row">
-  <div class="col-md-8 col-md-offset-2">
+  <div>
     <div class="panel panel-default">
-      
-      <div class="panel-heading recipe_image"> 
-        <% if @user.image? %>
+
+      <div class="panel-heading user_image">
+        
+        <div class="row">
+          <div class="col-md-5">
+            <% if @user.image? %>
+              <%= image_tag @user.image.url(:medium) %>
+            <% end %>  
           </div>
-            <%= image_tag @user.image.url(:medium) %>        
+          <div class="col-md-7">
+            <h1><%= @user.name %></h1>
+            <h2 class="motto">"<%= @user.motto %>"</h2>
+            <h3>Allergens avoiding:</h3>
+            <% @user.allergens.each do |allergen| %>
+              <%= allergen.name %>&nbsp;
+            <% end %>
           </div>
-        <% end %>
-      
-      <div class="panel-body">
-        <h1><%= @user.name %></h1>
-        <p class="motto">"<%= @user.motto %>"</p>
-        <h3>Allergens avoiding</h3>
-        <% @user.allergens.each do |allergen| %>
-          <%= allergen.name %>&nbsp;
+        </div>
+
+      </div>
+
+      <div id="contributed" class="panel-body">
+        <h3>Contributed Recipes</h3>
+        <% if @user.recipes %>
+          <%= render partial: "recipes/recipe_bricks", locals: {recipes: @user.recipes} %>
+        <% else %>
+          <p>Waiting for <%= @user.name %>'s first recipe </p>
         <% end %>
       </div>
       
       <div class="panel-footer">
-        <h3>Contributed recipes</h3>
-        <%= render partial: "recipes/recipe_bricks", locals: {recipes: @user.recipes } %>
-      </div> <!-- /.panel-footer/header/body -->
-      <div class="panel-footer">
-        <h3>Favorite recipes</h3>
-
+        <h3>Favorite Recipes</h3>
+          <% if @user.favorites %>
+            <%= render partial: "recipes/recipe_bricks", locals: {recipes: @user.favorites } %>
+          <% else %>
+            <p>Waiting for <%= @user.name %>'s first favorite recipe</p>
+          <% end %>        
       </div>
 
-    </div> <!-- /.panel -->
-  </div><!-- /.col -->
-</div><!-- /.recipe_show-->
-
+    </div><!-- /.panel -->
+  </div><!-- /col-md-8 -->
+</div> <!-- /.row-->

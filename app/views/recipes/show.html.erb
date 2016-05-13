@@ -18,7 +18,7 @@
         <h2 class="description"><%= @recipe.description %></h2>
         <h3>Allergens avoiding</h3>
         <% @recipe.allergens.each do |allergen| %>
-          <%= allergen.name %>
+          <%= allergen.name %>&nbsp;
         <% end %>
         <h3>Ingredients</h3>
         <ol>
