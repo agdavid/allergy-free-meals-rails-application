@@ -1,0 +1,26 @@
+<div id="users" class="transitions-enabled masonry">
+  <% @users.each do |user| %>
+    <div class="box panel panel-default masonry-brick">
+      <!-- image -->
+      <% if user.image? %>
+        <%= link_to (image_tag user.image.url(:medium)), user_path(user) %>
+      <% end %>
+      <!-- title -->
+      <div class="panel-body">
+        <h2><%= link_to user.name, user_path(user) %></h2>
+        <p>"<%= user.motto %>"</p>
+      
+        <div class="user">
+          <div class="row">
+            <div class="col-md-6">
+              Contributed <%= pluralize(user.recipes.count, "recipe") %>              
+            </div>
+            <div class="col-md-6">
+              Favorited <%= pluralize(user.favorites.count, "recipe") %>
+            </div>          
+          </div>
+        </div> <!-- /.user-->
+      </div><!-- /.panel-body-->
+    </div><!-- /.box .panel-default -->
+  <% end %> <!-- /iterator -->
+</div><!-- /.transitions-enabled masonry -->

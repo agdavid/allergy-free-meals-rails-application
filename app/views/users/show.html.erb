@@ -1,30 +1,33 @@
-<h1>User Show Page</h1>
-Name: <%= @user.name %><br />
+<div id="user_show" class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+      
+      <div class="panel-heading recipe_image"> 
+        <% if @user.image? %>
+          </div>
+            <%= image_tag @user.image.url(:medium) %>        
+          </div>
+        <% end %>
+      
+      <div class="panel-body">
+        <h1><%= @user.name %></h1>
+        <p class="motto">"<%= @user.motto %>"</p>
+        <h3>Allergens avoiding</h3>
+        <% @user.allergens.each do |allergen| %>
+          <%= allergen.name %>&nbsp;
+        <% end %>
+      </div>
+      
+      <div class="panel-footer">
+        <h3>Contributed recipes</h3>
+        <%= render partial: "recipes/recipe_bricks", locals: {recipes: @user.recipes } %>
+      </div> <!-- /.panel-footer/header/body -->
+      <div class="panel-footer">
+        <h3>Favorite recipes</h3>
 
-Allergens conscious about:
-<% @allergens.each do |allergen| %>
-  <%= allergen.name %>
-<% end %><br />
+      </div>
 
-Recipes:
-<ol>
-  <% @recipes.each do |recipe| %>
-    <li>
-      <%= link_to recipe.title, user_recipe_path(recipe.user, recipe) %>
-    </li>
-  <% end %>  
-</ol>
+    </div> <!-- /.panel -->
+  </div><!-- /.col -->
+</div><!-- /.recipe_show-->
 
-Favorites:
-<ol>
-  <% @favorites.each do |favorite| %>
-    <li>
-      <%= link_to favorite.title, recipe_path(favorite) %>
-    </li>
-  <% end %>  
-</ol>
-
-
-<% if @user == current_user %>
-  <%= link_to "New Recipe", new_user_recipe_path(@user) %>
-<% end %>

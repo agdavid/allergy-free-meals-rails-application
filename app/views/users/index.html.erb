@@ -1,9 +1,11 @@
-<h1>All Users Index</h1>
-<ol>
-  <% @users.each do |user| %>
-    <li>
-      Profile Page: <%= link_to user.name, user_path(user) %> |
-      Recipes: <%= link_to user.name, user_recipes_path(user) %>
-    </li>
-  <% end %>  
-</ol>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2 id="center">Your Allergy-Conscious Community</h1>
+      </div>
+    </div> 
+  </div>
+</div>
+
+<%= render "user_bricks" %>

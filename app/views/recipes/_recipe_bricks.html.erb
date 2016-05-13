@@ -1,8 +1,10 @@
 <div id="recipes" class="transitions-enabled masonry">
-  <% @recipes.each do |recipe| %>
+  <% recipes.each do |recipe| %>
     <div class="box panel panel-default masonry-brick">
       <!-- image -->
-      <%= link_to (image_tag recipe.image.url), user_recipe_path(recipe.user, recipe) %>
+      <% if recipe.image? %>
+        <%= link_to (image_tag recipe.image.url), user_recipe_path(recipe.user, recipe) %>
+       <% end %> 
       <!-- title -->
       <div class="panel-body">
         <h2><%= link_to recipe.title, user_recipe_path(recipe.user, recipe) %></h2>

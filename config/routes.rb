@@ -28,8 +28,6 @@ Rails.application.routes.draw do
   # Search
   get 'search/allergens' => "search#allergen_search"
   post 'search/allergens' => "search#allergen_search"
-  get 'search/text' => "search#text_search"
-  post 'search/text' => "search#text_search"
 
   # Admin namespace
   namespace :admin do 
