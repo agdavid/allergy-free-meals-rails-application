@@ -13,6 +13,9 @@ class User < ActiveRecord::Base
   has_many :user_allergens
   has_many :allergens, through: :user_allergens
 
+  # Paperclip gem
+  has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>"}
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/ 
   
   # Oauth
   def self.find_or_create_from_omniauth(auth_hash)

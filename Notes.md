@@ -1,6 +1,4 @@
 Next Steps:
-- overlapping array
-
 - review Pundit for authorizations
 
 - create Admin namespaced routes with views for:
