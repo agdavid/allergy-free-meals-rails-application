@@ -1,9 +1,12 @@
-<h1>Recipe Index Page</h1>
-<ul>
+<div class="transitions-enabled masonry" id="recipes">
   <% @recipes.each do |recipe| %>
-    <li><%= link_to recipe.title, user_recipe_path(recipe.user, recipe) %><br />
-        <%= link_to (image_tag recipe.image.url(:thumb)), user_recipe_path(recipe.user, recipe)%><br />
-        Submitted <%= time_ago_in_words(recipe.created_at) %> ago by <%= recipe.user.name %><br />
+    <div class="box panel panel-default masonry-brick">
+      <!-- image -->
+      <%= link_to (image_tag recipe.image.url), user_recipe_path(recipe.user, recipe) %>
+      <!-- title -->
+      <h2><%= link_to recipe.title, user_recipe_path(recipe.user, recipe) %></h2>
+      <p class="user">Submitted by <%= recipe.user.name %>
+        <!-- acts as votable -->
         <%= link_to like_recipe_path(recipe), method:"put" do %>
           <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
         <% end %>
@@ -12,6 +15,7 @@
           <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
         <% end %>
         <%= recipe.get_downvotes.size %>
-    </li>
-  <% end %>
-</ul>
+      </p>
+    </div><!-- /.box -->
+  <% end %> <!-- /iterator -->
+</div><!-- /.transitions-enabled masonry -->

@@ -1,30 +1,71 @@
-<h1>Recipe Show Page</h1>
+<div id="recipe_show" class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+      
+      <div class="panel-heading recipe_image">
+        <div class="btn pull-right">
+        <% if @recipe.user.favorites.include?(@recipe) %>
+          <%= link_to "Remove from Favorites", unfavorite_recipe_path(@recipe), method:"put", class:"btn btn-warning" %>
+        <% else %>
+          <%= link_to "Add to Favorites", favorite_recipe_path(@recipe), method:"put", class:"btn btn-info" %>
+        <% end %> 
+        </div>
+        <%= image_tag @recipe.image.url %>        
+      </div>
+      
+      <div class="panel-body">
+        <h1><%= @recipe.title %></h1>
+        <h2 class="description"><%= @recipe.description %></h2>
+        <h3>Allergens avoiding</h3>
+        <% @recipe.allergens.each do |allergen| %>
+          <%= allergen.name %>
+        <% end %>
+        <h3>Ingredients</h3>
+        <ol>
+          <% @recipe.ingredients.each do |ingredient| %>
+            <li><%= ingredient.item.name %> - <%= ingredient.amount %>
+            </li>
+            <% end %>
+        </ol>
+        <h3>Instructions</h3>
+        <p><%= @recipe.instruction %></p>
+      </div>
+      
+      <div class="panel-footer">
+        <div class="row"> 
+          
+          <div class="col-md-6">
+            <p class="user">Submitted with <i class="fa fa-heart" aria-hidden="true"></i> by
+              <%= @recipe.user.name %></p>
+          </div>
 
-<%= link_to "Add to Favorites", favorite_recipe_path(@recipe), method:"put" %> | <%= link_to "Remove from Favorites", unfavorite_recipe_path(@recipe), method:"put" %><br />
+          <div class="col-md-6">
+            <% if @recipe.user == current_user %>
+              <div class="btn-group pull-right">
+                <% if @recipe.user == current_user %>
+                  <%= link_to "Edit Recipe", edit_user_recipe_path(@recipe.user, @recipe), class: "btn btn-primary" %>
+                  <%= link_to "Delete Recipe", recipe_path(@recipe), method:"delete", data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+                <% end %>
+              </div>
+            <% else %>
+              <div class="btn-group pull-right">
+                <%= link_to like_recipe_path(@recipe), method:"put", class:"btn btn-default" do %>
+                  Upvote <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                <% end %> 
+                <%= link_to dislike_recipe_path(@recipe), method:"put", class:"btn btn-default" do %>
+                  Downvote <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
+                <% end %>
+              </div>
+            <% end %>
+          </div><!-- /.col-md-6 -->
 
-<%= image_tag @recipe.image.url(:medium) %>
-<h4>Name: <%= @recipe.title %></h4>
-<h4>By: <%= @recipe.user.name %></h4>
-<h4>Description: <%= @recipe.description %></h4>
-<h4>Instructions: <%= @recipe.instruction %></h4>
-Ingredients:
-<ol>
-  <% @recipe.ingredients.each do |ingredient| %>
-    <li>
-      <%= ingredient.item.name %> - <%= ingredient.amount %>
-    </li>
-    <% end %>
-</ol>
-<h4>Allergens Free of:</h4>
-<ul>
-  <% @recipe.allergens.each do |allergen| %>
-    <li>
-      <%= allergen.name %>
-    </li>
-  <% end %>
-</ul>
+        </div><!-- /.row -->
+      </div> <!-- /.panel-footer/header/body -->
+    
+    </div> <!-- /.panel -->
+  </div><!-- /.col -->
+</div><!-- /.recipe_show-->
 
-<% if @recipe.user == current_user %>
-  <%= link_to "Edit Recipe", edit_user_recipe_path(@recipe.user, @recipe) %> |
-  <%= link_to "Delete Recipe", recipe_path(@recipe), method:"delete" %>
-<% end %>
+
+
+

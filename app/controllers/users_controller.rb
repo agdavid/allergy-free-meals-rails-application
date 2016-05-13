@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+
+  def index
+    @users = User.all
+  end
+
   def show
     @user = User.find(params[:id])
     @allergens = @user.allergens
@@ -6,7 +11,4 @@ class UsersController < ApplicationController
     @favorites = @user.favorites
   end
 
-  def index
-    @users = User.all
-  end
 end

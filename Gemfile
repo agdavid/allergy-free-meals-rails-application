@@ -47,6 +47,9 @@ gem 'paperclip', '~> 4.3', '>= 4.3.6'
 # Use acts as votable for liking recipes
 gem 'acts_as_votable', '~> 0.10.0'
 
+#Use for bootstrap
+gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
+
 # Use for icons
 gem 'font-awesome-sass'
 
