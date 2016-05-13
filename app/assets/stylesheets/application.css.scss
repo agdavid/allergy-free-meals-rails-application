@@ -1,3 +1,20 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require 'masonry/transitions'
+ *= require_tree .
+ *= require_self
+ */
+ 
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "bootstrap-sprockets";
@@ -6,7 +23,6 @@
 .fa-facebook-square {
   color: #2C4388;
 }  
-
 
 nav.navbar {
   background: #a7dcdb;
@@ -24,25 +40,24 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: 100;
-  width: 100%;
 }
 
 #recipes {
   margin: 0 auto;
   .box {
     margin: 10px;
-    width: 350px;
+    width: 300px;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
     border-radius: 7px;
     text-align: center;
     img {
-      max-width: 100%;
+      width: 100%;
       height: auto;
     }
     h2 {
       font-size: 22px;
       margin: 0;
-      padding: 25px 10px;
+      padding: 10px 10px;
       a {
         color: #474747;
       }
@@ -50,7 +65,7 @@ h1, h2, h3, h4, h5, h6 {
     .user {
       font-size: 12px;
       border-top: 1px solid #EAEAEA;
-      padding: 15px;
+      padding: 10px;
       margin: 0;
     }
   }
