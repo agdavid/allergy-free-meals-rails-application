@@ -53,6 +53,12 @@ gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 # Use for icons
 gem 'font-awesome-sass'
 
+# Use for image movement
+  # For transitions
+  gem 'masonry-rails', '~> 0.2.4'
+  # For reloading jquery 
+  gem 'jquery-turbolinks', '~> 2.1'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

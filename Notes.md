@@ -1,10 +1,10 @@
 Next Steps:
-
-- review Pundit for authorizations
-
 - styling
   - Masonry gem
-  - design colors and layout 
+
+- overlapping array
+
+- review Pundit for authorizations
 
 - create Admin namespaced routes with views for:
   - Users - stats: last logged in, recipes, favorites; toggle admin
