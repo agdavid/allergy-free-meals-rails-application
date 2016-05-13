@@ -25,6 +25,12 @@ Rails.application.routes.draw do
     end
   end
 
+  # Search
+  get 'search/allergens' => "search#allergen_search"
+  post 'search/allergens' => "search#allergen_search"
+  get 'search/text' => "search#text_search"
+  post 'search/text' => "search#text_search"
+
   # Admin namespace
   namespace :admin do 
     resources :recipes, only: [:show, :index, :edit, :update, :destroy]

@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2>Allergens to avoid</h1>
+      </div>
+      <div class="panel-body">
+      
+        <%= form_tag(search_allergens_path, method: "post") do %>  
+          <div class="form-group">
+            <% @allergens.each do |allergen| %>
+              <%= check_box_tag "allergen_ids[]", allergen.id %>&nbsp;<%= label_tag allergen.name %>&nbsp;&nbsp;
+            <% end %>  
+          </div>
+          <%= submit_tag "Search", class: "btn btn-primary" %>
+        <% end %>
+      
+      </div>
+    </div> 
+  </div>
+</div>
+
+<!-- Conditional rendering of recipe bricks, if search results (@recipes) returned -->
+<% if @recipes %>
+  <%= render "recipes/recipe_bricks" %>
+<% end %> 

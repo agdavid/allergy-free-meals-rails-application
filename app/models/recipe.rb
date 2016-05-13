@@ -43,4 +43,16 @@ class Recipe < ActiveRecord::Base
       @ingredient.save
     end
   end
+
+  # Search for matching allergens
+  def self.match_allergens(search_allergen_ids)
+    search_allergen_ids = search_allergen_ids.collect { |id| id.to_i }
+    matched_recipes = []
+    self.all.each do |recipe|
+      intersect_ids = (recipe.allergen_ids & search_allergen_ids)  
+      matched_recipes << recipe if search_allergen_ids.sort == intersect_ids.sort
+    end
+    matched_recipes
+  end      
+
 end

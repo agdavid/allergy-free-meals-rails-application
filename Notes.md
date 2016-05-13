@@ -1,7 +1,4 @@
 Next Steps:
-- styling
-  - Masonry gem
-
 - overlapping array
 
 - review Pundit for authorizations
