@@ -13,6 +13,6 @@ class ApplicationController < ActionController::Base
     # Use for adding custom attributes to strong params
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, :remember_me, :name, :provider, :uid) }
-      devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:email, :password, :password_confirmation, :current_password, :name, { allergen_ids: [] }, :provider, :uid, :image, :motto) }
+      devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:email, :password, :password_confirmation, :current_password, :name, { allergen_ids: [] }, :provider, :uid, :image, :motto, :admin) }
     end
 end

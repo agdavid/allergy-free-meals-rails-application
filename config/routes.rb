@@ -32,9 +32,14 @@ Rails.application.routes.draw do
   # Admin namespace
   namespace :admin do 
     resources :recipes, only: [:show, :index, :edit, :update, :destroy]
-    resources :users, only: [:index]
     resources :items, only: [:show, :index, :edit, :update, :destroy]
     resources :allergens
+    resources :users do 
+      member do 
+        get "users", to: "users#index"
+        post "toggle", to: "users#toggle"
+      end
+    end
   end
   
 end
