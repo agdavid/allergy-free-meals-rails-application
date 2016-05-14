@@ -34,11 +34,13 @@
   <div class="form-group">
     <%= f.label "Ingredients" %>
     <!-- nested form "ingredients" which joins to "item"; loop creates entry fields for each "item" and its "ingredient" attr amount through a partial named _[model]_fields.html.erb -->
-    <ol>
-      <%= f.fields_for :ingredients do |ingredient| %>
-        <%= render 'ingredient_fields', f: ingredient %>
-      <% end %>
-    </ol>
+    <div id="recipe-items">  
+      <ol>
+        <%= f.fields_for :ingredients do |ingredient| %>
+          <%= render 'ingredient_fields', f: ingredient %>
+        <% end %>
+      </ol>
+    </div>
     <!-- 'cocoon' helper method to generate additional ingredient/item fields in form -->
     <!-- wrap_object allows new, empty "item" object associated with the "ingredient" entry on the form; without this you would add only a new "ingredient" without an associated "item"-->
     <%= link_to_add_association "<i class='fa fa-shopping-basket' aria-hidden='true'></i> Add Ingredient".html_safe, f, :ingredients, 'data-association-insertion-node' => "#recipe-items ol", 'data-association-insertion-method' => "append", :wrap_object => Proc.new { |ingredient| ingredient.build_item; ingredient }%>    

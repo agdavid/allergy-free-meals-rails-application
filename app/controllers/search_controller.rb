@@ -5,7 +5,7 @@ class SearchController < ApplicationController
     if params[:allergen_ids]
       # {"allergen_ids"=>["1", "2"]}
       @recipes = Recipe.match_allergens(params[:allergen_ids])
-      flash[:notice] = "Recipes successfully found."      
+      flash[:success] = "Recipes successfully found."      
     end
   end
 

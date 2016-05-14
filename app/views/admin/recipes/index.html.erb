@@ -1,1 +1,38 @@
-<h1>admin/recipes/index</h1>
+<div id="admin_user_index" class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+      
+      <div class="panel-heading">
+        <h1>Admin Panel: Recipe Index</h1>  
+      </div>
+      
+      <div class="panel-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>User</th>
+              <th>View</th>
+              <th>Edit</th>
+              <th>Destroy</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @recipes.each do |recipe| %>
+              <tr>
+                <td><%= recipe.id %></td>
+                <td><%= recipe.title %></td>
+                <td><%= recipe.user.name %></td>
+                <td><%= link_to "Show", recipe_path(recipe), class: "btn btn-default" %></td>
+                <td><%= link_to "Edit", edit_recipe_path(recipe), class: "btn btn-default" %></td>
+                <td><%= link_to "Delete", recipe_path(recipe), method:"delete", class: "btn btn-danger" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    
+    </div><!-- /.panel -->    
+  </div><!-- /.col -->
+</div> <!-- /.row-->

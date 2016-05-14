@@ -4,7 +4,7 @@ class RecipesController < ApplicationController
     if  params[:user_id]
       @user = User.find_by(id: params[:user_id])
       if @user.nil?
-        flash[:alert] = "User not found."
+        flash[:warning] = "User not found."
         redirect_to users_path
       else
         @recipes = @user.recipes 
@@ -20,7 +20,7 @@ class RecipesController < ApplicationController
       # Filter for a recipe by the user
       @recipe = @user.recipes.find_by(id: params[:id])
       if @recipe.nil?
-        flash[:alert] = "Recipe not found."
+        flash[:warning] = "Recipe not found."
         redirect_to user_recipes_path(@user)
       end
     else 
@@ -36,7 +36,8 @@ class RecipesController < ApplicationController
   def create
     @recipe = current_user.recipes.build(recipe_params)
     if @recipe.save
-      redirect_to recipe_path(@recipe), :notice => "Recipe successfully created."
+      flash[:success] = "Recipe successfully created."
+      redirect_to recipe_path(@recipe)
     else
       render "new"
     end
@@ -48,12 +49,14 @@ class RecipesController < ApplicationController
       @user = User.find_by(id: params[:user_id])
       # First, filter for an actual user
       if @user.nil?
-        redirect_to users_path, alert: "User not found."
+        flash[:warning] = "User not found."
+        redirect_to users_path
       else
       # Second, filter for an actual recipe of the user
         @recipe = @user.recipes.find_by(id: params[:id])
         if @recipe.nil?
-          redirect_to user_recipes_path(@user), alert: "Recipe not found."
+          flash[:warning] = "Recipe not found."
+          redirect_to user_recipes_path(@user)
         else
           @recipe = Recipe.find(params[:id])    
         end
@@ -66,7 +69,8 @@ class RecipesController < ApplicationController
   def update
     @recipe = Recipe.find(params[:id])    
     if @recipe.update(recipe_params)
-      redirect_to recipe_path(@recipe), :notice => "Recipe successfully updated."
+      flash[:success] = "Recipe successfully updated."
+      redirect_to recipe_path(@recipe)
     else
       render "edit"
     end
@@ -76,7 +80,8 @@ class RecipesController < ApplicationController
   def destroy
     @recipe = Recipe.find(params[:id])
     @recipe.destroy
-    redirect_to root_path, :notice => "Recipe successfully deleted."
+    flash[:success] = "Recipe successfully destroyed."
+    redirect_to root_path
   end
 
   # Acts as votable
@@ -98,10 +103,12 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @favorites = current_user.favorites
     if @favorites.include?(@recipe)
-      redirect_to :back, alert: "Failed to add. Recipe already in favorites."
+      flash[:warning] = "Failed to add. Recipe already in favorites."
+      redirect_to :back
     else
       @favorites << @recipe
-      redirect_to :back, notice: "Recipe added to favorites."  
+      flash[:success] = "Recipe added to favorites."
+      redirect_to :back  
     end
   end
 
@@ -110,9 +117,11 @@ class RecipesController < ApplicationController
     @favorites = current_user.favorites
     if @favorites.include?(@recipe)
       @favorites.delete(@recipe)
-      redirect_to :back, notice: "Recipe removed from favorites."
+      flash[:success] = "Recipe removed from favorites."
+      redirect_to :back
     else
-      redirect_to :back, alert: "Failed to remove. Recipe was not in favorites."
+      flash[:warning] = "Failed to remove. Recipe was not in favorites."
+      redirect_to :back
     end
   end
 
