@@ -1,1 +1,42 @@
-<h1>admin/allergens/index</h1>
+<div id="admin_index" class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+      
+      <div class="panel-heading">
+        <h1>Admin Panel: Allergen Index</h1>  
+      </div>
+      
+      <div class="panel-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Image</th>
+              <th>Edit</th>
+              <th>Destroy</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @allergens.each do |allergen| %>
+              <tr>
+                <td><%= allergen.id %></td>
+                <td><%= allergen.name %></td>
+                <td>
+                  <% if allergen.image? %>
+                    <%= image_tag allergen.image.url(:icon) %>
+                  <% else %>
+                    No image
+                  <% end %>
+                </td>
+                <td><%= link_to "Edit", edit_admin_allergen_path(allergen), class: "btn btn-primary btn-sm" %></td>
+                <td><%= link_to "Delete", admin_allergen_path(allergen), method:"delete", data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    
+    </div><!-- /.panel -->    
+  </div><!-- /.col -->
+</div> <!-- /.row-->

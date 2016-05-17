@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   namespace :admin do 
     resources :recipes, only: [:index]
     resources :items, only: [:show, :index, :edit, :update, :destroy]
-    resources :allergens
+    resources :allergens, except: [:show]
     resources :users do 
       member do 
         get "users", to: "users#index"
