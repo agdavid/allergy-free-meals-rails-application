@@ -12,20 +12,16 @@
             <tr>
               <th>Name</th>
               <th>Profile</th>
-              <th>Account</th>
               <th>Admin?</th>
-              <th>Destroy</th>
             </tr>
           </thead>
           <tbody>
             <% @users.each do |user| %>
               <tr>
                 <td><%= user.name %></td>
-                <td><%= link_to "Show", user_path(user), class: "btn btn-default "%></td>
-                <td>TBD</td>
-                <td><%= user.admin? %>&nbsp;<%= link_to "Toggle", toggle_admin_user_path(user), class: "btn btn-default", method:"post" %></td>
-                <td>TBD</td>
-              </tr>
+                <td><%= link_to "Show", user_path(user), class: "btn btn-default btn-sm "%></td>
+                 <td><%= user.admin? ? "True" : "False" %>&nbsp;<%= link_to "Toggle", toggle_admin_user_path(user), class: "btn btn-default btn-sm", method:"post" %></td>
+               </tr>
             <% end %>
           </tbody>
         </table>

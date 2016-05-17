@@ -7,6 +7,7 @@ class Admin::AllergensController < ApplicationController
   end
 
   def new
+    @allergen = Allergen.new
   end
 
   def create
