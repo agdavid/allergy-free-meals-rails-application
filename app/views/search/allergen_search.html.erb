@@ -1,5 +1,5 @@
 <div class="row">
-  <div id="allergen_search" class="col-md-10 col-md-offset-1">
+  <div id="allergen_search" class="col-md-8 col-md-offset-2">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h2>Select Allergens to Avoid:</h1>
@@ -9,7 +9,9 @@
         <%= form_tag(search_allergens_path, method: "post") do %>  
           <div class="form-group">
             <% @allergens.each do |allergen| %>
-              <%= check_box_tag "allergen_ids[]", allergen.id %>&nbsp;<%= label_tag allergen.name %>&nbsp;&nbsp;
+              <div class="allergen_wrapper">
+                <%= check_box_tag "allergen_ids[]", allergen.id %>&nbsp;&nbsp;<%= image_tag allergen.image.url(:thumb) %>&nbsp;&nbsp;
+              </div>
             <% end %>  
           </div>
           <%= submit_tag "Search", class: "btn btn-primary" %>
