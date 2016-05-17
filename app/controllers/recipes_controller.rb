@@ -1,4 +1,7 @@
 class RecipesController < ApplicationController
+  # Use with Devise to require login
+  before_action :authenticate_user!, except: [:index, :show]
+  # Use with Pundit to authorize based on policy
   after_action :verify_authorized, only: [:update, :destroy, :upvote, :downvote]
 
   def index

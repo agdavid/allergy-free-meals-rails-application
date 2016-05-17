@@ -9,7 +9,4 @@ class SearchController < ApplicationController
     end
   end
 
-  def text_search
-  end
-
 end
