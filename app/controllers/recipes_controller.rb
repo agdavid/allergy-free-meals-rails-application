@@ -13,10 +13,12 @@ class RecipesController < ApplicationController
       else
         @recipes = @user.recipes
         @favorite_user_recipe = Recipe.favorite_user_recipe.take 
+        @most_upvoted_recipe = Recipe.most_upvoted_recipe.take
       end
     else
       @recipes = Recipe.all
       @favorite_user_recipe = Recipe.favorite_user_recipe.take
+      @most_upvoted_recipe = Recipe.most_upvoted_recipe.take 
     end
   end
 
