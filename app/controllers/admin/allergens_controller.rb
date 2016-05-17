@@ -1,4 +1,5 @@
 class Admin::AllergensController < ApplicationController
+  before_action :set_allergen, only: [:edit, :update, :destroy]
   # Use with Devise to require login
   before_action :authenticate_user!
   # Use with Pundit to authorize based on policy
@@ -26,12 +27,10 @@ class Admin::AllergensController < ApplicationController
   end
 
   def edit
-    @allergen = Allergen.find(params[:id])
     authorize :admin, :admin_allergens_edit?
   end
 
   def update
-    @allergen = Allergen.find(params[:id])
     authorize :admin, :admin_allergens_update?    
     if @allergen.update(allergen_params)
       flash[:success] = "Allergen successfully updated."
@@ -42,7 +41,6 @@ class Admin::AllergensController < ApplicationController
   end
 
   def destroy
-    @allergen = Allergen.find(params[:id])
     authorize :admin, :admin_allergens_destroy?
     @allergen.destroy
     flash[:success] = "Allergen successfully destroyed."
@@ -50,6 +48,10 @@ class Admin::AllergensController < ApplicationController
   end
 
   private
+    def set_allergen
+      @allergen = Allergen.find(params[:id])
+    end
+
     def allergen_params
       params.require(:allergen).permit(:name, :image)
     end

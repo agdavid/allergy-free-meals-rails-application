@@ -1,4 +1,5 @@
 class RecipesController < ApplicationController
+  before_action :set_recipe, only: [:update, :destroy, :upvote, :downvote, :favorite, :unfavorite]
   # Use with Devise to require login
   before_action :authenticate_user!, except: [:index, :show]
   # Use with Pundit to authorize based on policy
@@ -78,7 +79,6 @@ class RecipesController < ApplicationController
   end
 
   def update
-    @recipe = Recipe.find(params[:id])
     # Pundit check
     authorize @recipe    
     if @recipe.update(recipe_params)
@@ -91,7 +91,6 @@ class RecipesController < ApplicationController
 
   # Make sure to add authorization
   def destroy
-    @recipe = Recipe.find(params[:id])
     # Pundit check
     authorize @recipe
     @recipe.destroy
@@ -102,14 +101,12 @@ class RecipesController < ApplicationController
   # Acts as votable
   # Make sure to add authorization - only vote if not own recipe
   def upvote
-    @recipe = Recipe.find(params[:id])
     authorize @recipe
     @recipe.upvote_by current_user
     redirect_to :back
   end
 
   def downvote
-    @recipe = Recipe.find(params[:id])
     authorize @recipe
     @recipe.downvote_by current_user
     redirect_to :back 
@@ -117,7 +114,6 @@ class RecipesController < ApplicationController
 
   # Favorite recipes
   def favorite
-    @recipe = Recipe.find(params[:id])
     @favorites = current_user.favorites
     if @favorites.include?(@recipe)
       flash[:warning] = "Failed to add. Recipe already in favorites."
@@ -130,7 +126,6 @@ class RecipesController < ApplicationController
   end
 
   def unfavorite
-    @recipe = Recipe.find(params[:id])
     @favorites = current_user.favorites
     if @favorites.include?(@recipe)
       @favorites.delete(@recipe)
@@ -143,6 +138,10 @@ class RecipesController < ApplicationController
   end
 
   private
+    def set_recipe
+      @recipe = Recipe.find(params[:id])
+    end
+
     def recipe_params
       params.require(:recipe).permit(:title, :description, :instruction, :user_id, :image,
         :ingredients_attributes => [:id, :amount, :_destroy, :item_attributes => [:id, :_destroy, :name]],
