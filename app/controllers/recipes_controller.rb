@@ -11,10 +11,12 @@ class RecipesController < ApplicationController
         flash[:warning] = "User not found."
         redirect_to users_path
       else
-        @recipes = @user.recipes 
+        @recipes = @user.recipes
+        @favorite_user_recipe = Recipe.favorite_user_recipe.take 
       end
     else
       @recipes = Recipe.all
+      @favorite_user_recipe = Recipe.favorite_user_recipe.take
     end
   end
 

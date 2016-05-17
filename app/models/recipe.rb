@@ -45,6 +45,12 @@ class Recipe < ActiveRecord::Base
     end
   end
 
+  # Model class method
+  def self.favorite_user_recipe
+    # Return the recipe added most to user favorites
+    self.joins(:favorite_recipes).group("recipe_id").order("COUNT(*) DESC").limit(1)
+  end
+
   # Search for matching allergens
   def self.match_allergens(search_allergen_ids)
     search_allergen_ids = search_allergen_ids.collect { |id| id.to_i }
