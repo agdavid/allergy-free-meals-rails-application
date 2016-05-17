@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160517142937) do
+ActiveRecord::Schema.define(version: 20160517204851) do
 
   create_table "allergens", force: :cascade do |t|
     t.string   "name"
@@ -55,14 +55,29 @@ ActiveRecord::Schema.define(version: 20160517142937) do
     t.string   "title"
     t.text     "description"
     t.text     "instruction"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.integer  "user_id"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.integer  "cached_votes_total",      default: 0
+    t.integer  "cached_votes_score",      default: 0
+    t.integer  "cached_votes_up",         default: 0
+    t.integer  "cached_votes_down",       default: 0
+    t.integer  "cached_weighted_score",   default: 0
+    t.integer  "cached_weighted_total",   default: 0
+    t.float    "cached_weighted_average", default: 0.0
   end
+
+  add_index "recipes", ["cached_votes_down"], name: "index_recipes_on_cached_votes_down"
+  add_index "recipes", ["cached_votes_score"], name: "index_recipes_on_cached_votes_score"
+  add_index "recipes", ["cached_votes_total"], name: "index_recipes_on_cached_votes_total"
+  add_index "recipes", ["cached_votes_up"], name: "index_recipes_on_cached_votes_up"
+  add_index "recipes", ["cached_weighted_average"], name: "index_recipes_on_cached_weighted_average"
+  add_index "recipes", ["cached_weighted_score"], name: "index_recipes_on_cached_weighted_score"
+  add_index "recipes", ["cached_weighted_total"], name: "index_recipes_on_cached_weighted_total"
 
   create_table "user_allergens", force: :cascade do |t|
     t.integer  "user_id"
