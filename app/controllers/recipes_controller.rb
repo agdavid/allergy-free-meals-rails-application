@@ -1,4 +1,5 @@
 class RecipesController < ApplicationController
+  after_action :verify_authorized, only: [:update, :destroy, :upvote, :downvote]
 
   def index
     if  params[:user_id]
@@ -33,6 +34,7 @@ class RecipesController < ApplicationController
     @recipe = current_user.recipes.build
   end
 
+  # Make sure to add authorization
   def create
     @recipe = current_user.recipes.build(recipe_params)
     if @recipe.save
@@ -58,16 +60,20 @@ class RecipesController < ApplicationController
           flash[:warning] = "Recipe not found."
           redirect_to user_recipes_path(@user)
         else
-          @recipe = Recipe.find(params[:id])    
+          @recipe = Recipe.find(params[:id]) 
+          authorize @recipe   
         end
       end
     else
       @recipe = Recipe.find(params[:id])
+      authorize @recipe
     end
   end
 
   def update
-    @recipe = Recipe.find(params[:id])    
+    @recipe = Recipe.find(params[:id])
+    # Pundit check
+    authorize @recipe    
     if @recipe.update(recipe_params)
       flash[:success] = "Recipe successfully updated."
       redirect_to recipe_path(@recipe)
@@ -79,6 +85,8 @@ class RecipesController < ApplicationController
   # Make sure to add authorization
   def destroy
     @recipe = Recipe.find(params[:id])
+    # Pundit check
+    authorize @recipe
     @recipe.destroy
     flash[:success] = "Recipe successfully destroyed."
     redirect_to root_path
@@ -88,12 +96,14 @@ class RecipesController < ApplicationController
   # Make sure to add authorization - only vote if not own recipe
   def upvote
     @recipe = Recipe.find(params[:id])
+    authorize @recipe
     @recipe.upvote_by current_user
     redirect_to :back
   end
 
   def downvote
     @recipe = Recipe.find(params[:id])
+    authorize @recipe
     @recipe.downvote_by current_user
     redirect_to :back 
   end
