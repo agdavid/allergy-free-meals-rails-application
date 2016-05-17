@@ -1,5 +1,14 @@
 class AdminPolicy < Struct.new(:user, :admin)
 
+  # controllers/admin/users_controller
+  def admin_users_index?
+    user.admin?
+  end
+
+  def admin_users_toggle?
+    user.admin?
+  end
+
   # controllers/admin/recipes_controller
   def admin_recipes_index?
     user.admin?
