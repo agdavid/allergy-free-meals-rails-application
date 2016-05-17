@@ -1,14 +1,17 @@
 <li class="nested-fields">
   <div class="form-group">
   
+  <div class="inline_wrapper">
     <%= f.label "Amount:" %>
     <%= f.text_field :amount, class: "input-md" %>
-
+  </div>
+  
+  <div class="inline_wrapper">
     <%= f.label "Ingredient:" %>
     <%= f.fields_for :item do |ingredient_item| %>
       <%= ingredient_item.text_field :name, class: "input-md" %>
     <% end %>
-
+  </div>
     <!-- 'cocoon' method looks for closest HTML element with class "nested-fields" -->
     <%= link_to_remove_association "Remove <i class='glyphicon glyphicon-remove'></i>".html_safe, f %>
   </div>

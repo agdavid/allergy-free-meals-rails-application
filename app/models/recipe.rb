@@ -1,5 +1,6 @@
 class Recipe < ActiveRecord::Base
-  
+  validates :title, :description, :instruction, presence: true
+
   # Relationships
   has_many :ingredients
   has_many :items, through: :ingredients

@@ -41,7 +41,7 @@
 
           <div class="col-md-6">
             <% if user_signed_in? %>
-              <% if (@recipe).update? && policy(@recipe).destroy? %>
+              <% if policy(@recipe).update? && policy(@recipe).destroy? %>
                 <div class="btn-group pull-right">
                   <% if @recipe.user == current_user %>
                     <%= link_to "Edit Recipe", edit_user_recipe_path(@recipe.user, @recipe), class: "btn btn-primary" %>

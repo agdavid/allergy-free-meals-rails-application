@@ -1,1 +1,17 @@
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <div class="panel panel-default">
+      
+      <div id="recipe_index" class="panel-heading">
+        <p>Eat well. Eat smart. Eat allergyfree.</p>
+        <% if user_signed_in? %>
+          <%= link_to "Create New Recipe", new_recipe_path, class: "btn btn-warning" %> or <%= link_to "Search by Allergen", search_allergens_path, class: "btn btn-warning" %>
+        <% else %> 
+          <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-danger" %> or <%= link_to "Log In", new_user_session_path, class: "btn btn-danger" %>  
+        <% end %>
+      </div>
+         
+    </div><!-- /.panel -->    
+  </div><!-- /.col -->
+</div> <!-- /.row-->
 <%= render partial: "recipe_bricks", locals: {recipes: @recipes} %>

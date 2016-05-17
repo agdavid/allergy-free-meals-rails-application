@@ -1,4 +1,6 @@
 class Allergen < ActiveRecord::Base
+  validates :name, presence: true
+
   has_many :recipe_allergens
   has_many :recipes, through: :recipe_allergens
 
