@@ -7,11 +7,14 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-    <%= render "shared/navigation" %>
-    <!-- see application_helper.rb -->
-    <%= flash_messages %>
-    <div id="main-container" class="container">
-      <%= yield %>
-    </div> <!-- close main container -->
+  <%= render "shared/navigation" %>
+  <!-- see application_helper.rb -->
+  <%= flash_messages %>
+  <div id="main-container" class="container">
+    <%= yield %>
+    <div id="push"></div>
+  </div> <!-- close main container -->
+  <%= render "shared/footer" %>
 </body>
+
 </html>

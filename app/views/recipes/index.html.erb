@@ -3,7 +3,7 @@
     <div id="recipe_index" class="panel panel-default">
       
       <div class="panel-heading">
-        <p>Eat well. Eat smart. Eat allergyfree.</p>
+        <p>Eat Smart. Eat Well. Eat AllergyFree.</p>
         <% if user_signed_in? %>
           <%= link_to "Create New Recipe", new_recipe_path, class: "btn btn-warning" %> or <%= link_to "Search by Allergen", search_allergens_path, class: "btn btn-warning" %>
         <% else %> 
@@ -27,4 +27,6 @@
     </div><!-- /.panel -->    
   </div><!-- /.col -->
 </div> <!-- /.row-->
-<%= render partial: "recipe_bricks", locals: {recipes: @recipes} %>
+<div class="row">
+  <%= render partial: "recipe_bricks", locals: {recipes: @recipes} %>
+</div>

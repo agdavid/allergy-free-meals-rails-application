@@ -41,5 +41,9 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  # Static routes
+  get 'disclaimer' => "static#disclaimer"
+  get 'about' => "static#about"
   
 end

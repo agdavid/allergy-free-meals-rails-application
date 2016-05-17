@@ -34,10 +34,30 @@ nav.navbar {
   }
 }
 
-body {
-  background: #e4c8b1
+html, body {
+  height: 100%;
+  margin: 0;
+  background: #F6F7E7;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: 100;
 }
+
+#main-container {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto 100px;
+}
+
+#footer {
+  height: auto;
+  width: 100%;
+  font-size: 1em;
+  color: #757575;
+  background-color: #a7dcdb;
+  text-align: center;
+  padding: 10px 10px;
+}
+
