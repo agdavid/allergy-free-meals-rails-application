@@ -37,12 +37,10 @@ class RecipesController < ApplicationController
     end
   end
 
-  # Make sure to add authorization
   def new
     @recipe = current_user.recipes.build
   end
 
-  # Make sure to add authorization
   def create
     @recipe = current_user.recipes.build(recipe_params)
     if @recipe.save
@@ -53,7 +51,6 @@ class RecipesController < ApplicationController
     end
   end
 
-  # Make sure to add authorization
   def edit
     if params[:user_id]
       @user = User.find_by(id: params[:user_id])
@@ -89,7 +86,6 @@ class RecipesController < ApplicationController
     end
   end
 
-  # Make sure to add authorization
   def destroy
     # Pundit check
     authorize @recipe
@@ -99,7 +95,6 @@ class RecipesController < ApplicationController
   end
 
   # Acts as votable
-  # Make sure to add authorization - only vote if not own recipe
   def upvote
     authorize @recipe
     @recipe.upvote_by current_user

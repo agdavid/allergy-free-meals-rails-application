@@ -15,12 +15,12 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "<i class='fa fa-home' aria-hidden='true'></i> Home".html_safe, root_path %></li>
-        <li><%= link_to "About", about_path %></li>
+        <li><%= link_to "HOME".html_safe, root_path %></li>
+        <li><%= link_to "ABOUT", about_path %></li>
         
         <!-- Recipes dropdown -->
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-spoon" aria-hidden="true"></i> Recipes<span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">RECIPES<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><%= link_to "All", root_path %></li>
             <li><%= link_to "By Allergen", search_allergens_path%></li>
@@ -31,16 +31,18 @@
         </li>
 
         <!-- Users index -->
-        <li><%= link_to "<i class='fa fa-users' aria-hidden='true'></i> Community".html_safe, users_path %></li>
+        <li><%= link_to "COMMUNITY".html_safe, users_path %></li>
         
         <!-- Settings and Logout dropdown -->
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog" aria-hidden="true"></i><span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><%= link_to "Edit Account", edit_user_registration_path %></li>
-            <li><%= link_to "Logout", destroy_user_session_path, method:"delete" %></li>
-          </ul>
-        </li>
+        <% if user_signed_in? %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog" aria-hidden="true"></i><span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Edit Account", edit_user_registration_path %></li>
+              <li><%= link_to "Logout", destroy_user_session_path, method:"delete" %></li>
+            </ul>
+          </li>
+         <% end %> 
 
         <% unless user_signed_in? %> 
           <li><%= link_to "Sign Up", new_user_registration_path %></li>

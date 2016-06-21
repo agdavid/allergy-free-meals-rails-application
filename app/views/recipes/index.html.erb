@@ -7,22 +7,28 @@
         <% if user_signed_in? %>
           <%= link_to "Create New Recipe", new_recipe_path, class: "btn btn-warning" %> or <%= link_to "Search by Allergen", search_allergens_path, class: "btn btn-warning" %>
         <% else %> 
-          <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-danger" %> or <%= link_to "Log In", new_user_session_path, class: "btn btn-danger" %>  
+          <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-danger" %> or <%= link_to "Login", new_user_session_path, class: "btn btn-danger" %>  
         <% end %>
       </div>
 
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-md-6">
-            <h5>Recipe Added Most to Favorites</h5>
-            <%= render partial: "top_recipe_brick", locals: {recipe: @favorite_user_recipe } %>              
-          </div>
-          <div class="col-md-6">
-            <h5>Top Recipe Upvoted by Users</h5>
-            <%= render partial: "top_recipe_brick", locals: {recipe: @most_upvoted_recipe } %>
+      <% if @favorite_user_recipe && @most_upvoted_recipe %>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-6">
+              <h5>Recipe Added Most to Favorites</h5>
+              <div class="top-recipe">
+                <%= render partial: "top_recipe_brick", locals: {recipe: @favorite_user_recipe } %>              
+              </div>
+            </div>
+            <div class="col-md-6">
+              <h5>Top Recipe Upvoted by Users</h5>
+              <div class="top-recipe">
+                <%= render partial: "top_recipe_brick", locals: {recipe: @most_upvoted_recipe } %>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      <% end %>
          
     </div><!-- /.panel -->    
   </div><!-- /.col -->

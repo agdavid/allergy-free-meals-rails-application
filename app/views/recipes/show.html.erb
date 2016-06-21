@@ -3,13 +3,15 @@
     <div class="panel panel-default">
       
       <div class="panel-heading recipe_image">
-        <div class="btn pull-right">
-        <% if @recipe.user.favorites.include?(@recipe) %>
-          <%= link_to "Remove from Favorites", unfavorite_recipe_path(@recipe), method:"put", class:"btn btn-warning" %>
-        <% else %>
-          <%= link_to "Add to Favorites", favorite_recipe_path(@recipe), method:"put", class:"btn btn-info" %>
-        <% end %> 
-        </div>
+        <% if user_signed_in? %> 
+          <div class="btn pull-right">
+            <% if @recipe.user.favorites.include?(@recipe) %>
+              <%= link_to "Remove from Favorites", unfavorite_recipe_path(@recipe), method:"put", class:"btn btn-warning" %>
+            <% else %>
+              <%= link_to "Add to Favorites", favorite_recipe_path(@recipe), method:"put", class:"btn btn-info" %>
+            <% end %> 
+          </div>
+         <% end %> 
         <%= image_tag @recipe.image.url %>        
       </div>
       
@@ -48,7 +50,8 @@
                     <%= link_to "Delete Recipe", recipe_path(@recipe), method:"delete", data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
                   <% end %>
                 </div>
-              <% else %>
+              <% end %>
+              <% if policy(@recipe).upvote? && policy(@recipe).downvote? %>
                 <div class="btn-group pull-right">
                   <%= link_to like_recipe_path(@recipe), method:"put", class:"btn btn-default" do %>
                     Upvote <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>

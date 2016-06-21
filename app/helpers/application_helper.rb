@@ -2,7 +2,7 @@ module ApplicationHelper
 
   #Source https://gist.github.com/suryart/7418454
   def bootstrap_class_for flash_type
-    { success: 'alert-success', error: 'alert-danger', warning: 'alert-warning'}[flash_type.to_sym]
+    { success: 'alert-success', info: 'alert-info', error: 'alert-danger', warning: 'alert-warning'}[flash_type.to_sym]
   end
 
   def flash_messages(opts = {})

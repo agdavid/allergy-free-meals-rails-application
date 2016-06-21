@@ -47,7 +47,7 @@
   </div>
 
   <div class="form-group">
-    <%= f.label "Free of Allergens:" %>
+    <%= f.label "Free of Allergens:" %><br>
     <div class="col-md-4 checkbox-list">
       <%= f.collection_check_boxes :allergen_ids, Allergen.all, :id, :name %>
     </div>
