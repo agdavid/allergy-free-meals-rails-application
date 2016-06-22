@@ -81,6 +81,35 @@
   }
 }
 
+#favorited-recipes {
+  margin: 0 auto;
+  .box {
+    margin: 10px;
+    width: 300px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+    border-radius: 7px;
+    text-align: center;
+    img {
+      width: 100%;
+      height: auto;
+    }
+    h2 {
+      font-size: 22px;
+      margin: 0;
+      padding: 10px 10px;
+      a {
+        color: #474747;
+      }
+    }
+    .user {
+      font-size: 12px;
+      border-top: 1px solid #EAEAEA;
+      padding: 10px;
+      margin: 0;
+    }
+  }
+}
+
 .inline_wrapper {
   display: inline-block;
 }

@@ -19,25 +19,20 @@
             <% end %>
           </div>
         </div>
-
-      </div>
+      </div> <!-- /.panel-heading -->
 
       <div id="contributed" class="panel-body">
         <h3>Contributed Recipes</h3>
-        <% if @user.recipes %>
-          <%= render partial: "recipes/recipe_bricks", locals: {recipes: @user.recipes} %>
-        <% else %>
-          <p>Waiting for <%= @user.name %>'s first recipe </p>
+        <% if @user_recipes %>
+          <%= render partial: "recipes/recipe_bricks", locals: {recipes: @user_recipes} %>
         <% end %>
       </div>
       
-      <div class="panel-footer">
+      <div id="favorited" class="panel-footer">
         <h3>Favorite Recipes</h3>
-          <% if @user.favorites %>
-            <%= render partial: "recipes/recipe_bricks", locals: {recipes: @user.favorites } %>
-          <% else %>
-            <p>Waiting for <%= @user.name %>'s first favorite recipe</p>
-          <% end %>        
+        <% if @user_favorites %>
+          <%= render partial: "recipes/favorited_recipe_bricks", locals: {recipes: @user_favorites } %>
+        <% end %>
       </div>
 
     </div><!-- /.panel -->

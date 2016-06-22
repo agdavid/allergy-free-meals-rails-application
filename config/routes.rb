@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   # Admin namespace
   namespace :admin do 
     resources :recipes, only: [:index]
-    resources :items, only: [:show, :index, :edit, :update, :destroy]
+    #resources :items, only: [:show, :index, :edit, :update, :destroy]
     resources :allergens, except: [:show]
     resources :users do 
       member do 

@@ -76,7 +76,6 @@ class RecipesController < ApplicationController
   end
 
   def update
-    # Pundit check
     authorize @recipe    
     if @recipe.update(recipe_params)
       flash[:success] = "Recipe successfully updated."
@@ -87,7 +86,6 @@ class RecipesController < ApplicationController
   end
 
   def destroy
-    # Pundit check
     authorize @recipe
     @recipe.destroy
     flash[:success] = "Recipe successfully destroyed."

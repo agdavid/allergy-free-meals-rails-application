@@ -36,3 +36,61 @@ Facebook request.env['omniauth.auth']:
     }
   }
 }
+
+recipes#new params:
+
+{
+  "recipe"=>{
+    "image"=>
+      #<ActionDispatch::Http::UploadedFile:0x007faf51a432d0 @tempfile=#<Tempfile:/var/folders/mr/qf7hjkc14w7gvrfwydkhk6c40000gn/T/RackMultipart20160622-581-loblxr.jpg>, @original_filename="fruit-platter.jpg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"recipe[image]\"; filename=\"fruit-platter.jpg\"\r\nContent-Type: image/jpeg\r\n">, 
+    "title"=>
+      "Fruit Platter", 
+    "description"=>
+      "This is a great summer dish - or basically any-time-of-year dish. As a better-eating tip, get the organic fruits at your local farmers' market to avoid pesticides and support your local growers. Suggested fruits are in the instructions, but use your imagination and pick anything you like!", 
+    "instruction"=>
+      "Chop all selected fruits into pieces that are easy to pick-up with a fork or toothpick. Arrange on a tray or platter - this is another place you can show your design skill or pizzazz.", 
+    "ingredients_attributes"=>{
+      "1466598742270"=>{
+        "amount"=>"1/2 pound", 
+        "item_attributes"=>{
+          "name"=>"Strawberry"
+          }, 
+        "_destroy"=>"false"},
+      "1466598752602"=>{
+        "amount"=>"4", 
+        "item_attributes"=>{
+          "name"=>"Kiwi"
+          }, 
+        "_destroy"=>"false"}
+    }, 
+    "allergen_ids"=>["1", "2", "3", "4", "5", "6", "7", "8"]
+  }
+}
+
+Recipe - ingredients_attributes= params:
+
+{
+  "1466598742270"=>{
+    "amount"=>"1/2 pound", 
+    "item_attributes"=>{
+      "name"=>"Strawberry"
+      }, 
+    "_destroy"=>"false"},
+  "1466598752602"=>{
+    "amount"=>"4", 
+    "item_attributes"=>{
+      "name"=>"Kiwi"
+      }, 
+    "_destroy"=>"false"}
+  }
+}
+
+search#allergen_search:
+
+{
+  "allergen_ids"=>["3", "4"]
+}
+
+Recipe - Recipe.match_allergens:
+
+["3", "4"]
