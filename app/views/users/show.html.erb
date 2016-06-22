@@ -16,7 +16,10 @@
             <h3>Allergens avoiding:</h3>
             <% @user.allergens.each do |allergen| %>
               <%= allergen.name %>&nbsp;
-            <% end %>
+            <% end %></br>
+            <% if user_signed_in? %>
+              <%= link_to "Create New Recipe", new_user_recipe_path(@user), class: "btn btn-warning" %>
+            <% end %> 
           </div>
         </div>
       </div> <!-- /.panel-heading -->
