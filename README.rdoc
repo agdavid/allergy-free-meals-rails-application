@@ -8,7 +8,7 @@ The application can be run locally on your localhost:
 1. Clone it (<tt>git clone git@github.com:agdavid/allergy-free-meals-rails-application.git</tt>)
 2. Obtain a Facebook KEY and SECRET (https://developers.facebook.com)
 3. On Facebook, in Settings/Basic, include the localhost URL in App Domains (http://localhost:3000/)
-4. On Facebook, in Products/Facebook Login, include the callback URL in Valid OAuth redirect URIs (Valid OAuth redirect URIs)
+4. On Facebook, in Products/Facebook Login, include the callback URL in Valid OAuth redirect URIs (http://localhost:3000/users/auth/facebook/callback)
 5. Start your local server (<tt>FACEBOOK_KEY=12345 FACEBOOK_SECRET=abcd rails s</tt>)
 
 You may browse the index of recipes and community of users without logging in or signing up.
