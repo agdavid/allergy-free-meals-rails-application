@@ -45,7 +45,7 @@ class Recipe < ActiveRecord::Base
     end
   end
 
-  # Model class methods
+  # Scope or Model class methods
   def self.favorite_user_recipe
     # Return the recipe added most to user favorites
     self.joins(:favorite_recipes).group("recipe_id").order("COUNT(*) DESC").limit(1)

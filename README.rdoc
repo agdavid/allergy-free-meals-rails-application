@@ -1,28 +1,21 @@
-== README
+= AllergyFree Meals
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+== Introduction
+AllergyFree Meals aims to help you feed yourself and your family delicious, nutritious meals while managing severe allergies.  Making healthy meals is just a little easier with the help of a community of people who are allergy-conscious, just like you.
 
-Things you may want to cover:
+== Usage
+You may browse the index of recipes and community of users without logging in or signing up.
 
-* Ruby version
+To contribute a recipe, you will need to sign up or login. 
 
-* System dependencies
+Sign up with an email and password or take the simple route by using your Facebook account.
 
-* Configuration
+== Contributing
+1. Fork it (https://github.com/agdavid/allergy-free-meals-rails-application/fork)
+2. Create your feature branch (git checkout -b my-new-feature)
+3. Commit your changes (git commit -am 'Add some feature')
+4. Push to the branch (git push origin my-new-feature)
+5. Create a new Pull Request
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+== License
+This project was created as part of the curriculum of Learn.co which is publicly and freely available under {Learn's Educational Content License}[https://learn.co/content-license].
