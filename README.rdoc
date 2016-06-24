@@ -4,11 +4,16 @@
 AllergyFree Meals aims to help you feed yourself and your family delicious, nutritious meals while managing severe allergies.  Making healthy meals is just a little easier with the help of a community of people who are allergy-conscious, just like you.
 
 == Usage
+The application can be run locally on your localhost:
+1. Clone it (git clone git@github.com:agdavid/allergy-free-meals-rails-application.git)
+2. Obtain a Facebook KEY and SECRET (https://developers.facebook.com)
+3. On Facebook, in Settings/Basic, include the localhost URL in App Domains (http://localhost:3000/)
+4. On Facebook, in Products/Facebook Login, include the callback URL in Valid OAuth redirect URIs (Valid OAuth redirect URIs)
+5. Start your local server (FACEBOOK_KEY=12345 FACEBOOK_SECRET=abcd rails s)
+
 You may browse the index of recipes and community of users without logging in or signing up.
 
-To contribute a recipe, you will need to sign up or login. 
-
-Sign up with an email and password or take the simple route by using your Facebook account.
+To contribute a recipe, you will need to sign up or login. Sign up with an email and password or take the simple route by using your Facebook account.
 
 == Contributing
 1. Fork it (https://github.com/agdavid/allergy-free-meals-rails-application/fork)
