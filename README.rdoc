@@ -5,11 +5,11 @@ AllergyFree Meals aims to help you feed yourself and your family delicious, nutr
 
 == Usage
 The application can be run locally on your localhost:
-1. Clone it (git clone git@github.com:agdavid/allergy-free-meals-rails-application.git)
+1. Clone it (<tt>git clone git@github.com:agdavid/allergy-free-meals-rails-application.git</tt>)
 2. Obtain a Facebook KEY and SECRET (https://developers.facebook.com)
 3. On Facebook, in Settings/Basic, include the localhost URL in App Domains (http://localhost:3000/)
 4. On Facebook, in Products/Facebook Login, include the callback URL in Valid OAuth redirect URIs (Valid OAuth redirect URIs)
-5. Start your local server (FACEBOOK_KEY=12345 FACEBOOK_SECRET=abcd rails s)
+5. Start your local server (<tt>FACEBOOK_KEY=12345 FACEBOOK_SECRET=abcd rails s</tt>)
 
 You may browse the index of recipes and community of users without logging in or signing up.
 
@@ -17,9 +17,9 @@ To contribute a recipe, you will need to sign up or login. Sign up with an email
 
 == Contributing
 1. Fork it (https://github.com/agdavid/allergy-free-meals-rails-application/fork)
-2. Create your feature branch (git checkout -b my-new-feature)
-3. Commit your changes (git commit -am 'Add some feature')
-4. Push to the branch (git push origin my-new-feature)
+2. Create your feature branch (<tt>git checkout -b my-new-feature</tt>)
+3. Commit your changes (<tt>git commit -am 'Add some feature'</tt>)
+4. Push to the branch (<tt>git push origin my-new-feature</tt>)
 5. Create a new Pull Request
 
 == License
