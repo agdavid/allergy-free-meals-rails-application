@@ -52,5 +52,15 @@ Object Relational Mapping (ORM):
   belongs_to :user
   belongs_to :allergen
 
+Next Steps: Rails App + jQuery Front-End
 
+1. Render one show page and one index page via jQuery and an Active Model Serialization JSON Backend
+
+2. Use Rails API to create a resource and render the response without a page refresh
+
+3. Rails API must reveal at least one has-many relationship in the JSON that is then rendered to the page
+
+4. Have at least one link that loads, or updates a resource without reloading the page
+
+5. Must translate the JSON responses into JavaScript Model Objects.  The Model Objects must have at least one method on the prototype.  Formatters work really well for this
 
