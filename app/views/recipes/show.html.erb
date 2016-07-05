@@ -70,9 +70,18 @@
     
     </div> <!-- /.panel -->
 
-    <div id="comments-area">
-      <!-- This is where the Comments form, comments#show, and comments#index will be -->
-    </div>
+    <div id="comments-area" class="col-md-8 col-md-offset-2">
+      
+      <div id="new_comment_form" class="row">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <%= render "comments/form" %>      
+          </div>
+        </div>
+      </div>
+    
+    </div> <!-- /#comments-area -->
+
   </div><!-- /.col -->
 </div><!-- /.recipe_show-->
 
