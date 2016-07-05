@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   # Recipe with nested member routes
   resources :recipes do 
+    resources :comments, only: [:create]
     member do 
       # Acts as votable
       put "like", to: "recipes#upvote"
