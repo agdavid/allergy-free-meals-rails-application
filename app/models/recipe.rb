@@ -10,7 +10,9 @@ class Recipe < ActiveRecord::Base
 
   belongs_to :user
   has_many :favorite_recipes
-  has_many :favorited_by, through: :favorite_recipes, source: :user 
+  has_many :favorited_by, through: :favorite_recipes, source: :user
+
+  has_many :comments 
 
   # Paperclip gem
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>"}
