@@ -62,6 +62,9 @@ gem 'font-awesome-sass'
 # Use for authorization
 gem 'pundit', '~> 1.1'
 
+# Use for json serialization
+gem 'active_model_serializers'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
