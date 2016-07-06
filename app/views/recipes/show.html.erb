@@ -72,10 +72,23 @@
 
     <div id="comments-area" class="col-md-8 col-md-offset-2">
       
-      <div id="new_comment_form" class="row">
+      <div id="comment_form" class="row">
         <div class="panel panel-default">
           <div class="panel-body">
+            
             <%= render "comments/form" %>      
+            <div class="new-comment-show" style="display: none">The New Comment Will go Here on Click of "Create Comment"
+            </div><br />
+            
+            
+            <div class="comments-index">
+              <ol>
+                <% @comments.each do |c| %>
+                  <li><%= c.description %></li>
+                <% end %>
+              </ol>
+            </div>
+          
           </div>
         </div>
       </div>

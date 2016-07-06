@@ -19,6 +19,12 @@ class CommentsController < ApplicationController
     end
   end
 
+  def index
+    #raise params.inspect
+    @recipe = Recipe.find(params[:recipe_id])
+    @comments = @recipe.comments 
+  end
+
   private
     def comment_params
       params.require(:comment).permit(:description, :user_id, :recipe_id)
