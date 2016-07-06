@@ -20,7 +20,6 @@ class CommentsController < ApplicationController
   end
 
   def index
-    #raise params.inspect
     @recipe = Recipe.find(params[:recipe_id])
     @comments = @recipe.comments 
   end

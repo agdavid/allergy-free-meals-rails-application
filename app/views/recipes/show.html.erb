@@ -77,10 +77,11 @@
           <div class="panel-body">
             
             <%= render "comments/form" %>      
-            <div class="new-comment-show" style="display: none">The New Comment Will go Here on Click of "Create Comment"
+            <div class="new-comment-show" style="display: none">
+              The New Comment Will go Here on Click of "Create Comment"
             </div><br />
             
-            
+            <%= button_to "Show All Comments", recipe_comments_path(@recipe), method: "get" %>
             <div class="comments-index">
               <ol>
                 <% @comments.each do |c| %>
