@@ -1,8 +1,19 @@
+// Step 1: use jQuery document ready to load JS only when page loaded
 $(function () {
   $("a.js-loadComments").on("click", function(event) {
-    // Step 1. Hijack the link to load all comments
-    alert("You clicked the Show All Comments link!")
+    // Step 2: Hijack the link to load all comments
+    // alert("You clicked the Show All Comments link!")
     event.preventDefault();
+    // Step 3a: Fire low-level AJAX, get a response, load into DOM
+    $.ajax({
+        method: "GET",
+        //url of "this", which is the href attribute of "Show All Comments" link
+        url: this.href, 
+    }).done(function(response) {
+        console.log(response);    
+    });
+    
+
     // var newCommentText = $('#newCommentDescription').val();
     // var new_comment_html = "";
 
