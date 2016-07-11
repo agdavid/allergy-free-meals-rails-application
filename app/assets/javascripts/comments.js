@@ -5,19 +5,21 @@ $(function () {
     // alert("You clicked the Show All Comments link!")
     event.preventDefault();
     // Step 3a: Fire low-level AJAX, get a response, load into DOM
-    $.ajax({
-        method: "GET",
-        //url of "this", which is the href attribute of "Show All Comments" link
-        url: this.href, 
-    }).done(function(response) {
-        //inject the plain comments#index response into DOM
-        $("div.comments-index").append(response);    
+        // $.ajax({
+        //     method: "GET",
+        //     //url of "this", which is the href attribute of "Show All Comments" link
+        //     url: this.href, 
+        // }).success(function(response) {
+        //     //inject the plain comments#index response into DOM
+        //     $("div.comments-index").html(response);    
+        // });
+    // Step 3b: Fire higher-level AJAX, get a response, load into DOM
+    $.get(this.href).success(function(response) {
+        $("div.comments-index").html(response);    
     });
-    
 
     // var newCommentText = $('#newCommentDescription').val();
     // var new_comment_html = "";
-
     // debugger;
     // $('.new-comment-show').toggle("hide");
     // //function NewComment(id, description, user, recipe)
