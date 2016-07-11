@@ -81,7 +81,7 @@
               The New Comment Will go Here on Click of "Create Comment"
             </div><br />
             
-            <%= link_to "Show All Comments", recipe_comments_path(@recipe), class: "js-loadComments" %>
+            <%= link_to "Show All Comments", recipe_comments_path(@recipe), class: "js-loadComments", remote: true %>
             
             <div class="comments-index">
               <ol>
