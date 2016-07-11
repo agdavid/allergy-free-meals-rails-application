@@ -56,12 +56,12 @@ Next Steps: Rails App + jQuery Front-End
 
 1. Render one show page and one index page via jQuery and an Active Model Serialization JSON Backend
   Show page:
-  - On recipes#show page, include comment form
+  [x] On recipes#show page, include comment form
   - On submit of comment form, hijack and show on recipes#show
 
-  Index page: 
-  - On recipes #show page, include button to "Show All Comments"
-  - On click of button, hijack and show on recipes#show
+  Index page: **DO THIS NEXT** 
+  [x] On recipes#show page, include link to "Show All Comments"
+  [x] On click of button, hijack and show on recipes#show
 
 2. Use Rails API to create a resource and render the response without a page refresh
   - The Show and Index actions above should satisfy

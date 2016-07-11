@@ -28,6 +28,7 @@ class RecipesController < ApplicationController
       @user = User.find_by(id: params[:user_id])
       # Filter for a recipe by the user
       @recipe = @user.recipes.find_by(id: params[:id])
+      @comments = @recipe.comments
       @comment = Comment.new
       if @recipe.nil?
         flash[:warning] = "Recipe not found."
@@ -35,6 +36,7 @@ class RecipesController < ApplicationController
       end
     else 
       @recipe = Recipe.find(params[:id])
+      @comments = @recipe.comments
       @comment = Comment.new
     end
   end

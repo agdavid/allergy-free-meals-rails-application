@@ -13,7 +13,7 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.text_field :description, class: "form-control", placeholder: "Comment on this recipe..." %>
+    <%= f.text_field :description, id: "newCommentDescription", class: "form-control", placeholder: "Comment on this recipe..." %>
     <%= f.hidden_field :user_id, value: current_user.id %>
     <%= f.hidden_field :recipe_id, value: @recipe.id %>
   </div>

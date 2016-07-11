@@ -23,8 +23,9 @@ class CommentsController < ApplicationController
     @recipe = Recipe.find(params[:recipe_id])
     @comments = @recipe.comments
     respond_to do |format|
-      format.html {render :index }
-      format.json {render json: @comments }
+      format.html { render :index } #standard recipes/2/comments
+      format.json { render json: @comments } #json to inject into DOM
+      format.js   { render layout: false } #remote true paradigm
     end 
   end
 
