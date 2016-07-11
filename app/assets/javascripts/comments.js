@@ -10,7 +10,8 @@ $(function () {
         //url of "this", which is the href attribute of "Show All Comments" link
         url: this.href, 
     }).done(function(response) {
-        console.log(response);    
+        //inject the plain comments#index response into DOM
+        $("div.comments-index").append(response);    
     });
     
 

@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get 'users/show'
   get 'users/index'
 
-  # Recipe with nested member routes
+  # Recipe with nested resource and member routes
   resources :recipes do 
     resources :comments, only: [:create, :show, :index]
     member do 
