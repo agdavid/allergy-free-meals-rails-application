@@ -21,8 +21,11 @@ class CommentsController < ApplicationController
 
   def index
     @recipe = Recipe.find(params[:recipe_id])
-    @comments = @recipe.comments 
-    render "index", layout: false
+    @comments = @recipe.comments
+    respond_to do |format|
+      format.html {render :index }
+      format.json {render json: @comments }
+    end 
   end
 
   private
