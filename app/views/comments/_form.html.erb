@@ -1,6 +1,6 @@
 <%#= form_for(@comment, url: recipe_comments_path(@recipe)) do |f| %>
 
-<%= form_for([@recipe, @comment]) do |f| %>
+<%= form_for([@recipe, @comment], html: {id: "new-comment-form"}) do |f| %>
   <% if @comment.errors.any? %>
     <div id="errors">
       <h2><%= pluralize(@comment.errors.count, "error") %> prevented this Comment from being saved:</h2>
@@ -19,6 +19,6 @@
     <%= f.hidden_field :recipe_id, value: @recipe.id %>
   </div>
 
-  <%= f.submit class: "btn btn-primary js-showNewComment" %>
+  <%= f.submit class: "btn btn-primary" %>
 
 <% end %> 
