@@ -1,3 +1,4 @@
+// JS below to load comments - replaced by Remote True
 // // Step 1: use jQuery document ready to load JS only when page loaded
 // $(function () {
 //   $("a.js-loadComments").on("click", function(event) {
@@ -31,11 +32,15 @@
 //         //     url: this.href,
 //         //     dataType: "script",
 //         // });
-
-//     // var newCommentText = $('#newCommentDescription').val();
-//     // var new_comment_html = "";
-//     // debugger;
-//     // $('.new-comment-show').toggle("hide");
-//     // //function NewComment(id, description, user, recipe)
 //   });
 // });
+
+// JS to post new comment via AJAX
+// Step 1: use jQuery document ready to load JS only when page loaded
+$(function() {
+  $('#new-comment-form').on("submit", function(event) {
+    //Step 2: Hijack the form
+    alert("You submitted the form!");
+    event.preventDefault();
+  });
+});
