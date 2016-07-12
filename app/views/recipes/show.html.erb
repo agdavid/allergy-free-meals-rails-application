@@ -76,7 +76,10 @@
         <div class="panel panel-default">
           <div class="panel-body">
             
-            <%= render "comments/form" %>      
+            <% if user_signed_in? %>
+              <%= render "comments/form" %>
+            <% end %>     
+            
             <div class="new-comment-show" style="display: none">
               The New Comment Will go Here on Click of "Create Comment"
             </div><br />
