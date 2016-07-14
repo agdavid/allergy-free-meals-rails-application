@@ -42,18 +42,19 @@ $(function() {
     //Step 2: Hijack the form
     event.preventDefault();
     // Step 3a: Fire low-level AJAX, post to comments#create
-    data = {
-      'authenticity_token': $("input[name='authenticity_token']").val(),
-      'comment': {
-        'description': $("input[name='comment[description]']").val(),
-        'user_id': $("input[name='comment[user_id]']").val(),
-        'recipe_id': $("input[name='comment[recipe_id]']").val()
-      }
-    };
+      // data = {
+      //   'authenticity_token': $("input[name='authenticity_token']").val(),
+      //   'comment': {
+      //     'description': $("input[name='comment[description]']").val(),
+      //     'user_id': $("input[name='comment[user_id]']").val(),
+      //     'recipe_id': $("input[name='comment[recipe_id]']").val()
+      //   }
+      // };
     $.ajax({
-      method: "POST",
+      type: ($("input[name='_method']").val()  || this.method),
+      // method: "POST",
       url: this.action,
-      data: data,
+      data: $(this).serialize(),
       success: function() {
         $("input[name='comment[description]']").val(""); //empty the text area
         $('div.comments-index').html(""); //empty the comments, if any
