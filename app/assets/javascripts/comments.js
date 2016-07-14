@@ -42,20 +42,21 @@ $(function() {
     //Step 2: Hijack the form
     event.preventDefault();
     // Step 3a: Fire low-level AJAX, post to comments#create
-    debugger;
     data = {
-      'authenticity_token': $("input[name='authenticity_token']").attr("value"),
+      'authenticity_token': $("input[name='authenticity_token']").val(),
       'comment': {
         'description': $("input[name='comment[description]']").val(),
-        'user_id': $("input[name='comment[user_id]']").attr("value"),
-        'recipe_id': $("input[name='comment[recipe_id]']").attr("value")
+        'user_id': $("input[name='comment[user_id]']").val(),
+        'recipe_id': $("input[name='comment[recipe_id]']").val()
       }
     };
-    debugger;
     $.ajax({
       method: "POST",
       url: this.action,
-      //need to build data hash
+      data: data,
+      success: function(response) {
+        debugger
+      }
     });
   });
 });
