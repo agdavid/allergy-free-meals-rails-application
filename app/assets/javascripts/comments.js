@@ -54,8 +54,9 @@ $(function() {
       method: "POST",
       url: this.action,
       data: data,
-      success: function(response) {
-        debugger
+      success: function() {
+        $('div.comments-index').html("");
+        $('a.js-loadComments').trigger('click');
       }
     });
   });

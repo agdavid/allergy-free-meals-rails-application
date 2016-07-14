@@ -80,16 +80,10 @@
               <%= render "comments/form" %>
             <% end %>     
             
-            <div class="new-comment-show" style="display: none">
-              The New Comment Will go Here on Click of "Create Comment"
-            </div><br />
-            
             <%= link_to "Show All Comments", recipe_comments_path(@recipe), class: "js-loadComments", remote: true %>
             
             <div class="comments-index">
-              <ol>
-                <!-- AJAX get response of comments#index will go here -->
-              </ol>
+              <!-- AJAX get response of comments#index will go here -->
             </div>
           
           </div>
