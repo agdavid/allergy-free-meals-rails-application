@@ -1,4 +1,4 @@
-// JS below to load comments - replaced by Remote True
+// JS to load comments - replaced by Remote True
 // // Step 1: use jQuery document ready to load JS only when page loaded
 // $(function () {
 //   $("a.js-loadComments").on("click", function(event) {
@@ -40,7 +40,22 @@
 $(function() {
   $('#new-comment-form').on("submit", function(event) {
     //Step 2: Hijack the form
-    alert("You submitted the form!");
     event.preventDefault();
+    // Step 3a: Fire low-level AJAX, post to comments#create
+    debugger;
+    data = {
+      'authenticity_token': $("input[name='authenticity_token']").attr("value"),
+      'comment': {
+        'description': $("input[name='comment[description]']").val(),
+        'user_id': $("input[name='comment[user_id]']").attr("value"),
+        'recipe_id': $("input[name='comment[recipe_id]']").attr("value")
+      }
+    };
+    debugger;
+    $.ajax({
+      method: "POST",
+      url: this.action,
+      //need to build data hash
+    });
   });
 });
