@@ -51,10 +51,10 @@ $(function() {
       //   }
       // };
     $.ajax({
-      type: ($("input[name='_method']").val()  || this.method),
+      type: ($("input[name='_method']").val()  || this.method), //generalize obtaining the action
       // method: "POST",
-      url: this.action,
-      data: $(this).serialize(),
+      url: this.action, //generalize getting the url
+      data: $(this).serialize(), //generalize serializing the data
       success: function() {
         $("input[name='comment[description]']").val(""); //empty the text area
         $('div.comments-index').html(""); //empty the comments, if any
