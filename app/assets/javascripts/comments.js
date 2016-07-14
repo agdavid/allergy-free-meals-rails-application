@@ -55,8 +55,9 @@ $(function() {
       url: this.action,
       data: data,
       success: function() {
-        $('div.comments-index').html("");
-        $('a.js-loadComments').trigger('click');
+        $("input[name='comment[description]']").val(""); //empty the text area
+        $('div.comments-index').html(""); //empty the comments, if any
+        $('a.js-loadComments').trigger('click'); //trigger "Show All Comments"
       }
     });
   });
