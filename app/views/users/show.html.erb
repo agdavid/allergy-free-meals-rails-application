@@ -23,7 +23,14 @@
             <br></br>
 
             <!-- Include JS hook and data-id -->
-            <%= link_to "Show Contributed Recipes", user_recipes_path(@user), class: "btn btn-primary", id: "js-showUserRecipes", :'data-id' => @user.id %>
+            <%= link_to "Show Contributed Recipes", user_recipes_path(@user), class: "btn btn-primary js-showUserRecipes", :'data-id' => @user.id %>
+            <br></br>  
+            
+            <div>
+              <ol class="userRecipes">
+                <!-- JSON response will go here -->
+              </ol>
+            </div>
                
           </div>
         </div>
