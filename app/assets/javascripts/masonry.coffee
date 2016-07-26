@@ -12,3 +12,8 @@ $ ->
     $('#favorited-recipes').masonry
       itemSelector: '.box'
       isFitWidth: true
+$ ->
+  $('#users').imagesLoaded ->
+    $('#users').masonry
+      itemSelector: '.box'
+      isFitWidth: true

@@ -19,24 +19,29 @@
             <% end %></br>
             <% if user_signed_in? %>
               <%= link_to "Create New Recipe", new_user_recipe_path(@user), class: "btn btn-warning" %>
-            <% end %> 
+            <% end %>
+            <br></br>
+
+            <!-- Include JS hook and data-id -->
+            <%= link_to "Show Contributed Recipes", user_recipes_path(@user), class: "btn btn-primary", id: "js-showRecipes", :'data-id' => @user.id %>
+               
           </div>
         </div>
       </div> <!-- /.panel-heading -->
 
-      <div id="contributed" class="panel-body">
+      <!-- <div id="contributed" class="panel-body">
         <h3>Contributed Recipes</h3>
-        <% if @user_recipes %>
-          <%= render partial: "recipes/recipe_bricks", locals: {recipes: @user_recipes} %>
-        <% end %>
+        <#% if @user_recipes %>
+          <#%= render partial: "recipes/recipe_bricks", locals: {recipes: @user_recipes} %>
+        <#% end %>
       </div>
       
       <div id="favorited" class="panel-footer">
         <h3>Favorite Recipes</h3>
-        <% if @user_favorites %>
-          <%= render partial: "recipes/favorited_recipe_bricks", locals: {recipes: @user_favorites } %>
-        <% end %>
-      </div>
+        <#% if @user_favorites %>
+          <#%= render partial: "recipes/favorited_recipe_bricks", locals: {recipes: @user_favorites } %>
+        <#% end %>
+      </div> -->
 
     </div><!-- /.panel -->
   </div><!-- /col-md-8 -->
