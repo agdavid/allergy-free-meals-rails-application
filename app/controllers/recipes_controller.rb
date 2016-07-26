@@ -34,10 +34,18 @@ class RecipesController < ApplicationController
         flash[:warning] = "Recipe not found."
         redirect_to user_recipes_path(@user)
       end
+      respond_to do |format|
+        format.html { render :show }
+        format.json { render json: @recipe }
+      end
     else 
       @recipe = Recipe.find(params[:id])
       @comments = @recipe.comments
       @comment = Comment.new
+      respond_to do |format|
+        format.html { render :show }
+        format.json { render json: @recipe }
+      end
     end
   end
 
