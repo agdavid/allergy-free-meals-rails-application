@@ -1,7 +1,18 @@
 $(function() {
-  $("#js-showRecipes").on("click", function(click) {
+  $("#js-showUserRecipes").on("click", function(click) {
     click.preventDefault();
-    alert("You just clicked");
+    var userId = parseInt($(click['target']).attr("data-id"));
+
+    function User(id, name, recipes) {
+      this.id = id
+      this.name = name
+      this.recipes = recipes
+    };
+
+    $.get("/users/" + userId + ".json", function(data) {  
+      debugger;  
+    });
+
   });
 });
   
