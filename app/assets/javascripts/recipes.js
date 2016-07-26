@@ -10,6 +10,7 @@ $(function() {
     };
 
     $.get("/users/" + userId + ".json", function(data) {  
+      var user = new User(data['id'], data['name'], data['recipes']);
       debugger;  
     });
 
