@@ -1,5 +1,5 @@
 <ol>
   <% @comments.each do |comment| %>
-    <li><%= link_to comment.description, recipe_comment_path(comment.recipe, comment) %></li>
+    <li><%= link_to comment.description, recipe_comment_path(comment.recipe, comment), class: "js-showComment" %></li>
   <% end %>
 </ol>

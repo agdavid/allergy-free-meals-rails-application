@@ -35,9 +35,9 @@
 //   });
 // });
 
-// JS to post new comment via AJAX
 // Step 1: use jQuery document ready to load JS only when page loaded
 $(function() {
+// JS to post new comment via AJAX
   $('#new-comment-form').on("submit", function(event) {
     //Step 2: Hijack the form
     event.preventDefault();
@@ -61,5 +61,12 @@ $(function() {
         $('a.js-loadComments').trigger('click'); //trigger "Show All Comments"
       }
     });
+  });
+
+// render comments_show page via jQuery and AMS JSON backend
+  $('.comments-index').on('click', '.js-showComment', function(click) {
+    // render response without page refresh
+    click.preventDefault();
+    alert("You just clicked on the link!");
   });
 });
