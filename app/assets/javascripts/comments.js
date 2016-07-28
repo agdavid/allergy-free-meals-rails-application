@@ -67,6 +67,11 @@ $(function() {
   $('.comments-index').on('click', '.js-showComment', function(click) {
     // render response without page refresh
     click.preventDefault();
-    alert("You just clicked on the link!");
+    var recipeId = parseInt($(click['target']).attr("recipe-id"));
+    var commentId = parseInt($(click['target']).attr("comment-id"));
+    var comment_html = "You cleared the main container."
+
+    $('#main-container').html(comment_html);
+
   });
 });
