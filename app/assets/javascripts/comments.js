@@ -69,9 +69,13 @@ $(function() {
     click.preventDefault();
     var recipeId = parseInt($(click['target']).attr("recipe-id"));
     var commentId = parseInt($(click['target']).attr("comment-id"));
-    var comment_html = "You cleared the main container."
+    var comment_html = ""
 
-    $('#main-container').html(comment_html);
-
+    // get JSON
+    $.get("/recipes/" + recipeId + "/comments/" + commentId + ".json", function(data) {
+      debugger;
+      $('#main-container').html(comment_html);
+    });
+    
   });
 });
