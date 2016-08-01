@@ -79,7 +79,7 @@ $(function() {
       this.user = user
       // method on the prototype
       this.display_comment = function() {
-        comment_html = "This is where the comment will go."
+        comment_html = comment_html.concat("<h2>" + this.user.name + " said about the " + this.recipe.title + "</h2><p>" + this.description + "</p>")
       }; 
     };
 
