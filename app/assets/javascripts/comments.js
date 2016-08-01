@@ -71,9 +71,22 @@ $(function() {
     var commentId = parseInt($(click['target']).attr("comment-id"));
     var comment_html = ""
 
+    // translate JSON into JS Model Object
+    function Comment(id, description, recipe, user) {
+      this.id = id 
+      this.description = description 
+      this.recipe = recipe 
+      this.user = user
+      // method on the prototype
+      this.display_comment = function() {
+        comment_html = "This is where the comment will go."
+      }; 
+    };
+
     // get JSON
     $.get("/recipes/" + recipeId + "/comments/" + commentId + ".json", function(data) {
-      debugger;
+      var comment = new Comment(data['id'], data['description'], data['recipe'], data['user']);
+      comment.display_comment();
       $('#main-container').html(comment_html);
     });
     
