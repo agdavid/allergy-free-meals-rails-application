@@ -12,8 +12,8 @@ Specs:
 - [x] Include at least one has_many relationship in information rendered via JSON
   - the AMS in serializers/user_serializer.rb reveals a user has_many recipes. This is used in the user method on the prototype #display_each_recipe in javascripts/recipes.js
 
-- [ ] Include at least one link that loads or updates a resource without reloading the page
-  - [TBD]
+- [x] Include at least one link that loads or updates a resource without reloading the page
+  - see above click of comments#show which renders through jQuery and loads show page without page refresh
 
 - [x] Translate JSON responses into js model objects
   - the JSON response for user is translated into a User JS model object, including a has_many recipes relationship
