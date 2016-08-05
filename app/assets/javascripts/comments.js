@@ -50,12 +50,19 @@ $(function() {
       this.title = title
       this.user = user
       this.comments = comments
+      this.display_each_comment = function() {
+        // reveal has_many relationship of prototype
+        $.each(this.comments, function(i, comment) {
+          comments_html = comments_html.concat("<li>" + comment.description + "</li>")
+        });
+        debugger;
+      };
     };
 
     // get JSON
     $.get("/recipes/" + recipeId + ".json", function(data) {
       var recipe = new Recipe(data['id'], data['title'], data['user'], data['comments'])
-      debugger;
+      recipe.display_each_comment();
     });
 
   });
