@@ -55,7 +55,6 @@ $(function() {
         $.each(this.comments, function(i, comment) {
           comments_html = comments_html.concat("<li>" + comment.description + "</li>")
         });
-        debugger;
       };
     };
 
@@ -63,6 +62,7 @@ $(function() {
     $.get("/recipes/" + recipeId + ".json", function(data) {
       var recipe = new Recipe(data['id'], data['title'], data['user'], data['comments'])
       recipe.display_each_comment();
+      $('.recipeComments').html(comments_html)
     });
 
   });
@@ -87,8 +87,8 @@ $(function() {
       data: $(this).serialize(), //generalize serializing the data
       success: function() {
         $("input[name='comment[description]']").val(""); //empty the text area
-        $('div.comments-index').html(""); //empty the comments, if any
-        $('a.js-loadComments').trigger('click'); //trigger "Show All Comments"
+        $('.recipeComments').html(""); //empty the comments, if any
+        $('.js-loadComments').trigger('click'); //trigger "Show All Comments"
       }
     });
   });

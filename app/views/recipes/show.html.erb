@@ -83,7 +83,7 @@
             <%= link_to "Show All Comments", recipe_comments_path(@recipe), class: "js-loadComments", :'data-id' => @recipe.id %>
             
             <div class="comments-index">
-              <ol>
+              <ol class="recipeComments">
               <!-- AJAX get response of comments#index will go here -->
               </ol>
             </div>
