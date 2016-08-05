@@ -39,8 +39,9 @@
 $(function() {
 // JS to show comments without remote true in recipes#show
   $('.js-loadComments').on('click', function(click) {
-    event.preventDefault();
-    alert("you just clicked to load comments");
+    click.preventDefault();
+    var recipeId = parseInt($(click['target']).attr("data-id"));
+    debugger;
   });
 
 // JS to post new comment via AJAX
