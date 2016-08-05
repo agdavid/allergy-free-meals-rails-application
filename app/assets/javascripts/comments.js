@@ -53,7 +53,7 @@ $(function() {
       this.display_each_comment = function() {
         // reveal has_many relationship of prototype
         $.each(this.comments, function(i, comment) {
-          comments_html = comments_html.concat("<li>" + comment.description + "</li>")
+          comments_html = comments_html.concat("<li><a href='/recipes/" + recipeId + "/comments/" + comment.id + "' class='js-showComment' recipe-id='" + recipeId + "' comment-id='" + comment.id + "'>" + comment.description + "</a></li>")
         });
       };
     };
