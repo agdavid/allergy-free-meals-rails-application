@@ -39,9 +39,25 @@
 $(function() {
 // JS to show comments without remote true in recipes#show
   $('.js-loadComments').on('click', function(click) {
+    // render response without page refresh
     click.preventDefault();
     var recipeId = parseInt($(click['target']).attr("data-id"));
-    debugger;
+    var comments_html = ""
+
+    // translate JSON into JS Model Object
+    function Recipe(id, title, user, comments) {
+      this.id = id
+      this.title = title
+      this.user = user
+      this.comments = comments
+    };
+
+    // get JSON
+    $.get("/recipes/" + recipeId + ".json", function(data) {
+      var recipe = new Recipe(data['id'], data['title'], data['user'], data['comments'])
+      debugger;
+    });
+
   });
 
 // JS to post new comment via AJAX
