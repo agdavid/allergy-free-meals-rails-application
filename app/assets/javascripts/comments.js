@@ -37,6 +37,12 @@
 
 // Step 1: use jQuery document ready to load JS only when page loaded
 $(function() {
+// JS to show comments without remote true in recipes#show
+  $('.js-loadComments').on('click', function(click) {
+    event.preventDefault();
+    alert("you just clicked to load comments");
+  });
+
 // JS to post new comment via AJAX
   $('#new-comment-form').on("submit", function(event) {
     //Step 2: Hijack the form
