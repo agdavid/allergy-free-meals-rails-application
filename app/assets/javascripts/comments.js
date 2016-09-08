@@ -61,11 +61,8 @@ $(function() {
     });
   });
 
-// JS to post new comment via AJAX
   $('#new-comment-form').on("submit", function(event) {
-    //Step 2: Hijack the form
     event.preventDefault();
-    // Step 3a: Fire low-level AJAX, post to comments#create
       // data = {
       //   'authenticity_token': $("input[name='authenticity_token']").val(),
       //   'comment': {
@@ -75,14 +72,13 @@ $(function() {
       //   }
       // };
     $.ajax({
-      type: ($("input[name='_method']").val()  || this.method), //generalize obtaining the action
-      // method: "POST",
-      url: this.action, //generalize getting the url
-      data: $(this).serialize(), //generalize serializing the data
+      // method: 'POST'
+      type: ($("input[name='_method']").val()  || this.method),
+      url: this.action,
+      data: $(this).serialize(),
       success: function() {
-        $("input[name='comment[description]']").val(""); //empty the text area
-        $('.recipeComments').html(""); //empty the comments, if any
-        $('.js-loadComments').trigger('click'); //trigger "Show All Comments"
+        $("input[name='comment[description]']").val(""); //empty new comment text area
+        $('.js-loadComments').trigger('click');
       }
     });
   });
