@@ -83,27 +83,22 @@ $(function() {
     });
   });
 
-// render comments_show page via jQuery and AMS JSON backend
-  $('.comments-index').on('click', '.js-showComment', function(click) {
-    // render response without page refresh
-    click.preventDefault();
-    var recipeId = parseInt($(click['target']).attr("recipe-id"));
-    var commentId = parseInt($(click['target']).attr("comment-id"));
+  $('.comments-index').on('click', '.js-showComment', function(event) {
+    event.preventDefault();
+    var recipeId = $(event.target).attr('recipe-id');
+    var commentId = $(event.target).attr('comment-id');
     var comment_html = ""
 
-    // translate JSON into JS Model Object
     function Comment(id, description, recipe, user) {
       this.id = id 
       this.description = description 
       this.recipe = recipe 
       this.user = user
-      // method on the prototype
       this.display_comment = function() {
         comment_html = comment_html.concat("<h2>" + this.user.name + " said about the " + this.recipe.title + "</h2><p>" + this.description + "</p><a href='/recipes/" + recipeId + "'>Back to Recipe</a>")
       }; 
     };
 
-    // get JSON
     $.get("/recipes/" + recipeId + "/comments/" + commentId + ".json", function(data) {
       var comment = new Comment(data['id'], data['description'], data['recipe'], data['user']);
       comment.display_comment();
