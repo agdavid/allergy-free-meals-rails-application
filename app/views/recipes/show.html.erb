@@ -78,10 +78,10 @@
             
             <% if user_signed_in? %>
               <%= render "comments/form" %>
-            <% end %>     
-            
-            <%= link_to "Show All Comments", recipe_comments_path(@recipe), class: "js-loadComments", :'data-id' => @recipe.id %>
-            
+            <% end %>
+
+            <a href="#" class="js-loadComments" data-id="<%= @recipe.id %>">Show All Comments</a>
+
             <div class="comments-index">
               <ol class="recipeComments">
               <!-- AJAX get response of comments#index will go here -->
