@@ -35,36 +35,30 @@
 //   });
 // });
 
-// Step 1: use jQuery document ready to load JS only when page loaded
 $(function() {
-// JS to show comments without remote true in recipes#show
-  $('.js-loadComments').on('click', function(click) {
-    // render response without page refresh
-    click.preventDefault();
-    var recipeId = parseInt($(click['target']).attr("data-id"));
-    var comments_html = ""
+  $('.js-loadComments').on('click', function(event) {
+    event.preventDefault();
+    var recipeId = $(event.target).data('id');
+    var comments_html = '<ol class="recipeComments">'
 
-    // translate JSON into JS Model Object
     function Recipe(id, title, user, comments) {
       this.id = id
       this.title = title
       this.user = user
       this.comments = comments
       this.display_each_comment = function() {
-        // reveal has_many relationship of prototype
         $.each(this.comments, function(i, comment) {
           comments_html = comments_html.concat("<li><a href='/recipes/" + recipeId + "/comments/" + comment.id + "' class='js-showComment' recipe-id='" + recipeId + "' comment-id='" + comment.id + "'>" + comment.description + "</a></li>")
         });
+        comments_html = comments_html.concat('</ol>');
       };
     };
 
-    // get JSON
     $.get("/recipes/" + recipeId + ".json", function(data) {
       var recipe = new Recipe(data['id'], data['title'], data['user'], data['comments'])
       recipe.display_each_comment();
-      $('.recipeComments').html(comments_html)
+      $('.comments-index').html(comments_html)
     });
-
   });
 
 // JS to post new comment via AJAX
