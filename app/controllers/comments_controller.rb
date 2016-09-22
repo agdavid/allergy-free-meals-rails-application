@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     respond_to do |format|
       format.html { render :show }
-      format.json { render json: @comment }
+      format.json { render(json: @comment) }
     end
   end
 
@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
     @comments = @recipe.comments
     respond_to do |format|
       format.html { render :index } #standard recipes/2/comments
-      format.json { render json: @comments } #json to inject into DOM
+      format.json { render(json: @comments) } #json to inject into DOM
       format.js   { render layout: false } #remote true paradigm
     end 
   end

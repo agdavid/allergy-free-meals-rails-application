@@ -46,13 +46,20 @@ $(function() {
       this.title = title
       this.user = user
       this.comments = comments
-      this.display_each_comment = function() {
+      // this.display_each_comment = function() {
+      //   $.each(this.comments, function(i, comment) {
+      //     comments_html = comments_html.concat("<li><a href='/recipes/" + recipeId + "/comments/" + comment.id + "' class='js-showComment' recipe-id='" + recipeId + "' comment-id='" + comment.id + "'>" + comment.description + "</a></li>")
+      //   });
+      //   comments_html = comments_html.concat('</ol>');
+      // };
+    };
+
+    Recipe.prototype.display_each_comment = function() {
         $.each(this.comments, function(i, comment) {
           comments_html = comments_html.concat("<li><a href='/recipes/" + recipeId + "/comments/" + comment.id + "' class='js-showComment' recipe-id='" + recipeId + "' comment-id='" + comment.id + "'>" + comment.description + "</a></li>")
         });
         comments_html = comments_html.concat('</ol>');
       };
-    };
 
     $.get("/recipes/" + recipeId + ".json", function(data) {
       var recipe = new Recipe(data['id'], data['title'], data['user'], data['comments'])
