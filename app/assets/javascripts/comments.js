@@ -54,11 +54,12 @@ $(function() {
       this.id = id 
       this.description = description 
       this.recipe = recipe 
-      this.user = user
-      this.display_comment = function() {
-        comment_html = comment_html.concat("<h2>" + this.user.name + " said about the " + this.recipe.title + "</h2><p>" + this.description + "</p><a href='/recipes/" + recipeId + "'>Back to Recipe</a>")
-      }; 
+      this.user = user 
     };
+
+    Comment.prototype.display_comment = function() {
+        comment_html = comment_html.concat("<h2>" + this.user.name + " said about the " + this.recipe.title + "</h2><p>" + this.description + "</p><a href='/recipes/" + recipeId + "'>Back to Recipe</a>")
+      };
 
     $.get("/recipes/" + recipeId + "/comments/" + commentId + ".json", function(data) {
       var comment = new Comment(data['id'], data['description'], data['recipe'], data['user']);
