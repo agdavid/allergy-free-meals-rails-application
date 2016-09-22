@@ -25,7 +25,6 @@ class CommentsController < ApplicationController
     respond_to do |format|
       format.html { render :index } #standard recipes/2/comments
       format.json { render(json: @comments) } #json to inject into DOM
-      format.js   { render layout: false } #remote true paradigm
     end 
   end
 
