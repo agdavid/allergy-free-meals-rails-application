@@ -10,13 +10,11 @@ $(function() {
       type: 'GET',
       url: '/users/' + userId + '/recipes.json',
       success: function(data) {
-        debugger;
         showRecipes(data)  
       } 
     });
 
     function showRecipes(data) {
-      debugger;
       for ( var i = 0; i < data.length; i++) {
         var recipe = new Recipe(data[i].id, data[i].title, data[i].user.id);
         recipe.displayRecipe();
@@ -31,7 +29,7 @@ $(function() {
     };
 
     Recipe.prototype.displayRecipe = function() {
-      recipesHTML = recipesHTML.concat('<li>' + this.title + '</li>');
+      recipesHTML = recipesHTML.concat('<li><a href="/users/' + this.user_id+ '/recipes/' + this.id + '">' + this.title + '</a></li>');
     };
 
     
