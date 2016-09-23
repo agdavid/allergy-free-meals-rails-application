@@ -21,35 +21,24 @@
               <%= link_to "Create New Recipe", new_user_recipe_path(@user), class: "btn btn-warning" %>
             <% end %>
             <br></br>
-
-            <!-- Include JS hook and data-id -->
-            <%= link_to "Show Contributed Recipes", user_recipes_path(@user), class: "btn btn-primary js-showUserRecipes", :'data-id' => @user.id %>
-            <br></br>  
-            
-            <div>
-              <ol class="userRecipes">
-                <!-- JSON response will go here -->
-              </ol>
-            </div>
-               
           </div>
         </div>
       </div> <!-- /.panel-heading -->
 
-      <!-- <div id="contributed" class="panel-body">
+      <div id="contributed" class="panel-body">
         <h3>Contributed Recipes</h3>
-        <#% if @user_recipes %>
-          <#%= render partial: "recipes/recipe_bricks", locals: {recipes: @user_recipes} %>
-        <#% end %>
+        <% if @user_recipes %>
+          <%= render partial: "recipes/recipe_bricks", locals: {recipes: @user_recipes} %>
+        <% end %>
       </div>
       
       <div id="favorited" class="panel-footer">
         <h3>Favorite Recipes</h3>
-        <#% if @user_favorites %>
-          <#%= render partial: "recipes/favorited_recipe_bricks", locals: {recipes: @user_favorites } %>
-        <#% end %>
-      </div> -->
+        <% if @user_favorites %>
+          <%= render partial: "recipes/favorited_recipe_bricks", locals: {recipes: @user_favorites } %>
+        <% end %>
+      </div>
 
     </div><!-- /.panel -->
   </div><!-- /col-md-8 -->
-</div> <!-- /.row-->
+</div> <!-- /.row -->
