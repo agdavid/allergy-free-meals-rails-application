@@ -2,7 +2,10 @@
 $(function() {
 
   // 'Show All Comments' link
-  $('.js-loadComments').on('click', function(event) {
+  $('.js-loadComments').on('click', loadComments);
+
+  // callback function loadComments to be called
+  function loadComments(event) {
     event.preventDefault();
     var recipeId = $(event.target).data('id');
     var comments_html = '<ol class="recipeComments">'
@@ -25,8 +28,9 @@ $(function() {
       var recipe = new Recipe(data['id'], data['title'], data['user'], data['comments'])
       recipe.display_each_comment();
       $('.comments-index').html(comments_html)
+      $('.js-loadComments').hide();
     });
-  });
+  };
 
   // 'Create Comment' button
   $('#new-comment-form').on("submit", function(event) {
@@ -38,7 +42,7 @@ $(function() {
       data: $(this).serialize(),
       success: function() {
         $("input[name='comment[description]']").val(""); //empty new comment text area
-        $('.js-loadComments').trigger('click');
+        loadComments();       
       }
     });
   });
