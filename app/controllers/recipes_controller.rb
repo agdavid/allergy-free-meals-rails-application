@@ -15,6 +15,10 @@ class RecipesController < ApplicationController
         @recipes = @user.recipes
         @favorite_user_recipe = Recipe.favorite_user_recipe.take 
         @most_upvoted_recipe = Recipe.most_upvoted_recipe.take
+        respond_to do |format|
+          format.html { render :index }
+          format.json { render json: @recipes }
+        end
       end
     else
       @recipes = Recipe.all
